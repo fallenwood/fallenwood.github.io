@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: DoesGodDice
 subtitle:
 description:
-author: John Doe
-language:
-timezone:
+author: fallenwood
+language: zh-cn
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://fallenwood.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
