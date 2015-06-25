@@ -12,8 +12,8 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fallenwood.github.io/public/
-root: /public/
+url: http://fallenwood.github.io/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -69,5 +69,5 @@ theme: landscape
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://www.github.com/fallenwood/fallenwood.gibhu.io
+  repository: http://www.github.com/fallenwood/fallenwood.gibhu.io
   branch: master
