@@ -69,5 +69,5 @@ theme: landscape
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: http://www.github.com/fallenwood/fallenwood.gibhu.io
+  repository: git@github.com:fallenwood/fallenwood.github.io.git
   branch: master
