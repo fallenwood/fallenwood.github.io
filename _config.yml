@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: DoesGodDice
+title: Does God Dice?
 subtitle:
 description:
 author: fallenwood
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: landscape-plus
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
