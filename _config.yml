@@ -5,10 +5,11 @@
 # Site
 title: Does God Dice?
 subtitle:
-description:
+description: Fallenwood's blog.
 author: fallenwood
-language: zh-cn
+language: zh-Hans
 timezone: Asia/Shanghai
+avatar: http://app.qlogo.cn/mbloghead/e0d18fd53ffe128ed540/50
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -41,7 +42,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
+  tab_replace: true
 
 # Category & Tag
 default_category: uncategorized
@@ -63,11 +64,14 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape-plus
+## theme: landscape-plus
+theme: hexo-theme-next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
+
 deploy:
   type: git
-  repository: git@github.com:fallenwood/fallenwood.github.io.git
-  branch: master
+  repo:
+    github: git@github.com:fallenwood/fallenwood.github.io.git,master
+    # gitcafe: git@gitcafe.com:fallenwood/fallenwood.git,gitcafe-pages
