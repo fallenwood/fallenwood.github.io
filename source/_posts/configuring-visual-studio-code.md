@@ -1,4 +1,4 @@
-title: 配置VSCode(长期更新)
+title: 配置VSCode
 date: 2016-05-24 13:29:12
 tags: [vscode, c++, js, go, python]
 ---
@@ -41,10 +41,10 @@ Visual Studio Code(以下简称VSCode或Code)是由大巨硬开发的一款跨�
 ```
 我的git全局配置使用`git config`设置过了，所以就没怎么动\_(:3)JL)\_
 
-不过code不能识别`msys2`的git，所以我用了sourcetree的内嵌git
+不过`code`不能识别`msys2`的`git`(bug?)，所以我用了sourcetree的内嵌git
 
  ### terminal
-1.2版本的VSCode最大的特点就是自带了一个集成的终端，从此可以告别shell和editor来回切换的日子了。
+1.2版本的`VSCode`最大的特点就是自带了一个集成的终端，从此可以告别`shell`和`editor`来回切换的日子了。
 但是这个终端，目前为止在我手上还有问题，比如不能正常显示汉字，不能复制粘贴。
 
 ```JSON
@@ -53,41 +53,42 @@ Visual Studio Code(以下简称VSCode或Code)是由大巨硬开发的一款跨�
 
 ## Javascript
 
-`VSCode`自带了`npm`,`gulp`和`grunt`的task配置和`nodejs`的launch配置，我没需要改o.o
+`VSCode`自带了`npm`,`gulp`和`grunt`的task配置和`nodejs`的`launch`配置，我没需要改o.o
 
  ### javascript
 
-首先我们需要安装插件，我选择使用`eslint`代替`jslint`，需要`nodejs`来安装`eslint`。
+首先我们需要安装插件，我选择使用[`eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint "")代替`jslint`，需要`nodejs`来安装[`eslint`](https://www.npmjs.com/package/eslint "")。
 
 [eslint配置](https://github.com/fallenwood/dotfiles/blob/master/linter/.eslintrc.js "")
 
  ### typescript
-`typescript`是微软发行的一个可以编译成`javascript`的静态类型语言，是`javascript`的超集，支持`es6`语法。
+[`typescript`](https://www.typescriptlang.org/ "")([中文网](http://www.tslang.cn/ ""))是微软发行的一个可以编译成`javascript`的静态类型语言，是`javascript`的超集，支持`es6`语法。
 
-~~虽然安装了`tslint`插件，但是没配置，以后补上。~~
+~~虽然安装了[`tslint`](https://www.npmjs.com/package/tslint "")插件，但是没配置，以后补上。~~
 
 我的`tslint`[配置](https://github.com/fallenwood/dotfiles/blob/master/linter/tslint.json "")基本照搬了官网的demo
 
  ### 第三方库和nodejs
 虽然`VSCode`本身带有了一定的代码提示，但是对于第三方库的补全却不是很够用。为了弥补这个功能，可以使用[`TypeScript Definition`](http://definitelytyped.org/ "")来增强补全。<br />
-虽然可以手动下载`tsd`文件，但是我选择使用`typings`<br />
-以`jquery`为例
+虽然可以手动下载`tsd`文件，但是我选择使用[`typings`](https://www.npmjs.com/package/typings "")<br />
+以`node`为例
 
 1. `npm i typings -g`
 1. 在项目目录中`typings init`
-1. 还是在项目目录中`typings install jquery --global --save`
+1. 还是在项目目录中`typings install dt~node --global --save`
 1. 在代码头部引入`/// <reference path="typings/index.d.ts" />`
 
 然后，就没有然后了
 
 ## HTML
-似乎自从某一次更新以后，`html`的tags就从自带变成了插件，不过不要紧，我们把插件装上就可以了。
+似乎自从某一次更新以后，`html`的[`snippets`](https://marketplace.visualstudio.com/items?itemName=abusaidm.html-snippets "")就从自带变成了插件，不过不要紧，我们把插件装上就可以了。
 
+由于自带了[`emmet`](http://emmet.io/ "")，写起来还是很舒服的
  ### nunjucks
-`nunjucks`是一个`nodejs`的html模板，它的语法和python的`jinja2`很像。可以安装插件显示`nunjucks`的高亮，但是补全目前还很不足。
+`nunjucks`是一个`nodejs`的`html`模板，它的语法和`python`的`jinja2`很像。可以安装插件显示`nunjucks`的高亮，但是不能调用html的补全(通过修改插件可以)。
 
 ## C/C++
-安装插件`clang-format`,`c/c++`和`c/c++ clang`，但是补全和格式化需要额外安装`clang`套装。
+安装插件[`clang-format`](https://marketplace.visualstudio.com/items?itemName=kube.ClangComplete ""),[`c/c++`](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools "")和[`c/c++ clang`](https://marketplace.visualstudio.com/items?itemName=mitaki28.vscode-clang "")，但是补全和格式化需要额外安装[`clang`套装](http://llvm.org/ "")。
 
 `clang`是一个编译器前端，以与`gcc`的兼容性，完善的标准支持和友好的错误提示著称。在`Linux`和`MacOSX`中可以方便的安装，但是在`Windows`下略有区别。`VS2015 U2`集成了一个`clang`前端，但是并不知道是否能用来提示。另一个安装二进制的方法是通过`msys2`，当然很多人并不用它。剩下来的大概只有编译安装了，这是个货真价实的大坑。
 
@@ -162,8 +163,9 @@ Visual Studio Code(以下简称VSCode或Code)是由大巨硬开发的一款跨�
   }
 }
 ```
+
 ## Go
-安装lukehoban开发的`go`插件，然后fq，再下载go自己的一堆插件
+安装[`go`插件](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go "")，然后fq下载go自己的一堆插件
 ```JSON
 {
   "go.vetOnSave": true,
@@ -177,28 +179,38 @@ Visual Studio Code(以下简称VSCode或Code)是由大巨硬开发的一款跨�
 `go`的插件带了调试选项，但是`build`和`run`需要我们自己写task
 
 ## Python
-安装jayamanne开发的`python`插件，然后配置一下，基本是开箱即用
+安装[`python`插件](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python "")，然后配置一下，基本是开箱即用
 ```JSON
 {
   "python.linting.pep8Enabled": true,
   "python.pythonPath": "python.exe",
 }
 ```
-然后安装一堆pip的包,比如`autopep8`什么的
+然后安装一堆`pip`的包,比如`autopep8`什么的
+```
+pip install autopep8
+```
+
+## Java
+[java插件](https://marketplace.visualstudio.com/items?itemName=georgewfraser.vscode-javac "")在我的机器上没有效果
 
 ## CSharp
-`VSCode`的C#补全使用的是`dotnet core`提供的，编译task有`msbuild`和`dotnet core`两种，没有细究，不敢乱说。
+[插件地址](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp "")
+
+`VSCode`的C#补全使用的是`dotnet core`提供的，编译task有`msbuild`和`dotnet core`两种，但由于我不会C#，所以我什么都不知道。
 
 ## PHP
-我好像只装了`PHP code format`，其他的也就配一下可执行文件的目录，而且我自从使用`VSCode`以后就没写过`PHP`(虽然原来也没写过多少)，所以也不敢乱说。
+我好像只装了`PHP code format`，其他的也就配一下可执行文件的目录，而且我自从使用`VSCode`以后就没写过`PHP`(虽然原来也没写过多少)。
 
-PS.目前似乎没有`peek definition`的功能
+PS.目前似乎没有`peek definition`一类的功能。
 
 ## 其他
 
- ### vscode-file-header-comment-helper
+ ### [vscode-file-header-comment-helper](https://marketplace.visualstudio.com/items?itemName=Gigabyte-Giant.vscode-file-header-comment-helper "")
 一个可以在文件开头加上特定文本的插件，比如`#! /user/bin/env python`一类的东西。
 
+ ### [background](https://marketplace.visualstudio.com/items?itemName=shalldie.background "")
+ 我没有这种奇奇怪怪的需求
 
  ### 我的hexo tasks
 我的博客是使用`hexo`搭建在`github pages`上的，使用`VSCode`作为`Markdown`编辑器，所以配置了`hexo`的`tasks`用来生成和部署。
