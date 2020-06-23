@@ -117,26 +117,26 @@ theme_config:
     sidebar: false
     post: false
     language:
-    
-    
+
+
   # ---------------------------------------------------------------
   # Scheme Settings
   # ---------------------------------------------------------------
-  
+
   # Schemes
   #scheme: Muse
   scheme: Mist
   #scheme: Pisces
   #scheme: Gemini
-  
+
   # Dark Mode
   darkmode: false
-  
-  
+
+
   # ---------------------------------------------------------------
   # Menu Settings
   # ---------------------------------------------------------------
-  
+
   # Usage: `Key: /link/ || icon`
   # Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.
   # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
@@ -151,42 +151,42 @@ theme_config:
     #sitemap: /sitemap.xml || fa fa-sitemap
     #commonweal: /404/ || fa fa-heartbeat
     about: /about/ || fa fa-user
-  
+
   # Enable / Disable menu icons / item badges.
   menu_settings:
     icons: true
     badges: false
-  
-  
+
+
   # ---------------------------------------------------------------
   # Sidebar Settings
   # See: https://theme-next.org/docs/theme-settings/sidebar
   # ---------------------------------------------------------------
-  
+
   sidebar:
     # Sidebar Position.
     #position: left
     position: right
-  
+
     # Manual define the sidebar width. If commented, will be default for:
     # Muse | Mist: 320
     # Pisces | Gemini: 240
     #width: 300
-    
+
     # Sidebar Display (only for Muse | Mist), available values:
     #  - post    expand on posts automatically. Default.
     #  - always  expand for all pages automatically.
     #  - hide    expand only when click on the sidebar toggle icon.
     #  - remove  totally remove sidebar including sidebar toggle.
     display: post
-    
+
     # Sidebar padding in pixels.
     padding: 18
     # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
     offset: 12
     # Enable sidebar on narrow view (only for Muse | Mist).
     onmobile: false
-    
+
   # Sidebar Avatar
   avatar:
     # Replace the default image and set the url here.
@@ -195,10 +195,10 @@ theme_config:
     rounded: true
     # If true, the avatar will be rotated with the cursor.
     rotated: false
-  
+
   # Posts / Categories / Tags in sidebar.
   site_state: true
-  
+
   # Social Links
   # Usage: `Key: permalink || icon`
   # Key is the link label showing to end users.
@@ -206,22 +206,22 @@ theme_config:
   social:
     GitHub: https://github.com/fallenwood || fab fa-github
     E-Mail: mailto:fallenwood@foxmail.com || fa fa-envelope
-  
+
   social_icons:
     enable: true
     icons_only: false
     transition: false
-  
+
   # Blog rolls
   links_settings:
     icon: fa fa-link
     title: Links
     # Available values: block | inline
     layout: block
-  
+
   links:
     #Title: http://yoursite.com
-  
+
   # Reward (Donate)
   # Front-matter variable (unsupport animation).
   reward_settings:
@@ -229,36 +229,36 @@ theme_config:
     enable: false
     animation: false
     #comment: Donate comment here.
-  
+
   reward:
     #wechatpay: /images/wechatpay.png
     #alipay: /images/alipay.png
     #paypal: /images/paypal.png
     #bitcoin: /images/bitcoin.png
-  
+
   # Subscribe through Telegram Channel, Twitter, etc.
   # Usage: `Key: permalink || icon` (Font Awesome)
   follow_me:
     Twitter: https://twitter.com/yuy0216 || fab fa-twitter
     Telegram: https://t.me/fallenwood || fab fa-telegram
-  
+
   # Show previous post and next post in post footer if exists
   # Available values: left | right | false
   post_navigation: right
-  
-  
-  
+
+
+
   # ---------------------------------------------------------------
   # SEO Settings
   # ---------------------------------------------------------------
-  
+
   # Disable Baidu transformation on mobile devices.
   disable_baidu_transformation: true
-  
+
   # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
   baidu_push: true
-  
-  
+
+
   # ---------------------------------------------------------------
   # Third Party Plugins & Services Settings
   # See: https://theme-next.org/docs/third-party-services/
@@ -268,52 +268,52 @@ theme_config:
   #   - jsDelivr (cdn.jsdelivr.net), works everywhere even in China
   #   - CDNJS (cdnjs.cloudflare.com), provided by cloudflare
   # ---------------------------------------------------------------
-  
+
   # Math Formulas Render Support
   math:
     # Default (true) will load mathjax / katex script on demand.
     # That is it only render those page which has `mathjax: true` in Front-matter.
     # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
     per_page: true
-  
+
     # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
     mathjax:
       enable: false
       # See: https://mhchem.github.io/MathJax-mhchem/
       mhchem: false
-    
+
     # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
     katex:
       enable: false
       # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
       copy_tex: false
-    
+
   # Easily enable fast Ajax navigation on your website.
   # Dependencies: https://github.com/theme-next/theme-next-pjax
   pjax: false
-    
+
   # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
   # For more information: https://fancyapps.com/fancybox
   fancybox: true
-    
+
   # A JavaScript library for zooming images like Medium.
   # Do not enable both `fancybox` and `mediumzoom`.
   # For more information: https://github.com/francoischalifour/medium-zoom
   mediumzoom: false
-    
+
   # Vanilla JavaScript plugin for lazyloading images.
   # For more information: https://github.com/ApoorvSaxena/lozad.js
   lazyload: true
-    
+
   # Pangu Support
   # For more information: https://github.com/vinta/pangu.js
   pangu: false
-    
+
   # ---------------------------------------------------------------
   # Comments Settings
   # See: https://theme-next.org/docs/third-party-services/comments
   # ---------------------------------------------------------------
-  
+
   # Multiple Comment System Support
   comments:
     # Available values: tabs | buttons
@@ -332,7 +332,7 @@ theme_config:
       #  order: -1
       #gitalk:
       #  order: -2
-      
+
   # Valine
   # For more information: https://valine.js.org, https://github.com/xCss/Valine
   valine:
@@ -351,11 +351,11 @@ theme_config:
     recordIP: false # Whether to record the commenter IP
     serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
     #post_meta_order: 0
-  
+
   # LiveRe comments system
   # You can get your uid from https://livere.com/insight/myCode (General web site)
   livere_uid: # <your_uid>
-  
+
   # Gitalk
   # For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk
   gitalk:
@@ -370,12 +370,12 @@ theme_config:
     # If you want everyone visiting your site to see a uniform language, you can set a force language value
     # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
     language:
-    
-    
+
+
   # Local Search
   # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
   local_search:
-    enable: true
+    enable: false
     # If auto, trigger search by changing input.
     # If manual, trigger search by pressing enter key or search button.
     trigger: auto
