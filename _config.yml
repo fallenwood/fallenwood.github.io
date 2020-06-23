@@ -107,123 +107,29 @@ deploy:
 # theme-next
 ############################################################################################################################################
 theme_config:
-  # Creative Commons 4.0 International License.
-  # See: https://creativecommons.org/share-your-work/licensing-types-examples
-  # Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-  # You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
-  # CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
-  creative_commons:
-    license: by-nc-sa
-    sidebar: false
-    post: false
-    language:
-
-
-  # ---------------------------------------------------------------
-  # Scheme Settings
-  # ---------------------------------------------------------------
-
-  # Schemes
-  #scheme: Muse
   scheme: Mist
-  #scheme: Pisces
-  #scheme: Gemini
-
-  # Dark Mode
-  darkmode: false
-
-
-  # ---------------------------------------------------------------
-  # Menu Settings
-  # ---------------------------------------------------------------
-
-  # Usage: `Key: /link/ || icon`
-  # Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.
-  # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
-  # When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -> archives).
-  # External url should start with http:// or https://
+  minify: true
   menu:
     home: / || fa fa-home
     tags: /tags/ || fa fa-tags
-    #categories: /categories/ || fa fa-th
-    #archives: /archives/ || fa fa-archive
-    #schedule: /schedule/ || fa fa-calendar
-    #sitemap: /sitemap.xml || fa fa-sitemap
-    #commonweal: /404/ || fa fa-heartbeat
     about: /about/ || fa fa-user
 
-  # Enable / Disable menu icons / item badges.
-  menu_settings:
-    icons: true
-    badges: false
-
-
-  # ---------------------------------------------------------------
-  # Sidebar Settings
-  # See: https://theme-next.org/docs/theme-settings/sidebar
-  # ---------------------------------------------------------------
-
   sidebar:
-    # Sidebar Position.
-    #position: left
     position: right
-
-    # Manual define the sidebar width. If commented, will be default for:
-    # Muse | Mist: 320
-    # Pisces | Gemini: 240
-    #width: 300
-
-    # Sidebar Display (only for Muse | Mist), available values:
-    #  - post    expand on posts automatically. Default.
-    #  - always  expand for all pages automatically.
-    #  - hide    expand only when click on the sidebar toggle icon.
-    #  - remove  totally remove sidebar including sidebar toggle.
     display: post
 
-    # Sidebar padding in pixels.
-    padding: 18
-    # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
-    offset: 12
-    # Enable sidebar on narrow view (only for Muse | Mist).
-    onmobile: false
-
-  # Sidebar Avatar
   avatar:
-    # Replace the default image and set the url here.
-    url: https://i2.hdslb.com/bfs/face/d4d74e2d56976a8941f15f8cb5d9886311980416.jpg@150w_150h.jpg
-    # If true, the avatar will be dispalyed in circle.
-    rounded: true
-    # If true, the avatar will be rotated with the cursor.
-    rotated: false
+    url: https://avatars3.githubusercontent.com/u/11188646?s=460&u=03be4d4bfff58b76590a531210407491a747c661&v=4
 
-  # Posts / Categories / Tags in sidebar.
   site_state: true
 
-  # Social Links
-  # Usage: `Key: permalink || icon`
-  # Key is the link label showing to end users.
-  # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
   social:
     GitHub: https://github.com/fallenwood || fab fa-github
     E-Mail: mailto:fallenwood@foxmail.com || fa fa-envelope
 
-  social_icons:
-    enable: true
-    icons_only: false
-    transition: false
-
-  # Blog rolls
-  links_settings:
-    icon: fa fa-link
-    title: Links
-    # Available values: block | inline
-    layout: block
-
   links:
     #Title: http://yoursite.com
 
-  # Reward (Donate)
-  # Front-matter variable (unsupport animation).
   reward_settings:
     # If true, reward will be displayed in every article by default.
     enable: false
@@ -236,40 +142,16 @@ theme_config:
     #paypal: /images/paypal.png
     #bitcoin: /images/bitcoin.png
 
-  # Subscribe through Telegram Channel, Twitter, etc.
-  # Usage: `Key: permalink || icon` (Font Awesome)
   follow_me:
     Twitter: https://twitter.com/yuy0216 || fab fa-twitter
     Telegram: https://t.me/fallenwood || fab fa-telegram
 
-  # Show previous post and next post in post footer if exists
-  # Available values: left | right | false
   post_navigation: right
 
-
-
-  # ---------------------------------------------------------------
-  # SEO Settings
-  # ---------------------------------------------------------------
-
-  # Disable Baidu transformation on mobile devices.
   disable_baidu_transformation: true
 
-  # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
   baidu_push: true
 
-
-  # ---------------------------------------------------------------
-  # Third Party Plugins & Services Settings
-  # See: https://theme-next.org/docs/third-party-services/
-  # More plugins: https://github.com/theme-next/awesome-next
-  # You may need to install dependencies or set CDN URLs in `vendors`
-  # There are two different CDN providers by default:
-  #   - jsDelivr (cdn.jsdelivr.net), works everywhere even in China
-  #   - CDNJS (cdnjs.cloudflare.com), provided by cloudflare
-  # ---------------------------------------------------------------
-
-  # Math Formulas Render Support
   math:
     # Default (true) will load mathjax / katex script on demand.
     # That is it only render those page which has `mathjax: true` in Front-matter.
@@ -288,12 +170,6 @@ theme_config:
       # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
       copy_tex: false
 
-  # Easily enable fast Ajax navigation on your website.
-  # Dependencies: https://github.com/theme-next/theme-next-pjax
-  pjax: false
-
-  # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
-  # For more information: https://fancyapps.com/fancybox
   fancybox: true
 
   # A JavaScript library for zooming images like Medium.
@@ -304,15 +180,6 @@ theme_config:
   # Vanilla JavaScript plugin for lazyloading images.
   # For more information: https://github.com/ApoorvSaxena/lozad.js
   lazyload: true
-
-  # Pangu Support
-  # For more information: https://github.com/vinta/pangu.js
-  pangu: false
-
-  # ---------------------------------------------------------------
-  # Comments Settings
-  # See: https://theme-next.org/docs/third-party-services/comments
-  # ---------------------------------------------------------------
 
   # Multiple Comment System Support
   comments:
@@ -370,18 +237,3 @@ theme_config:
     # If you want everyone visiting your site to see a uniform language, you can set a force language value
     # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
     language:
-
-
-  # Local Search
-  # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
-  local_search:
-    enable: false
-    # If auto, trigger search by changing input.
-    # If manual, trigger search by pressing enter key or search button.
-    trigger: auto
-    # Show top n results per article, show all results by setting to -1
-    top_n_per_article: 1
-    # Unescape html strings to the readable one.
-    unescape: false
-    # Preload the search data when the page loads.
-    preload: false
