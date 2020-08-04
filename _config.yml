@@ -239,7 +239,11 @@ theme_config:
     language:
 
 vendors:
-  jquery: https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js
-  fancybox: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js
-  fancybox_css: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css
-  lazylod: https://cdn.bootcdn.net/ajax/libs/lozad.js/1.14.0/lozad.min.js
+  jquery: //cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js
+  fancybox: //cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js
+  fancybox_css: //cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css
+  lazylod: //cdn.bootcdn.net/ajax/libs/lozad.js/1.14.0/lozad.min.js
+  velocity: //cdn.bootcdn.net/ajax/libs/velocity/2.0.6/velocity.min.js
+  velocity_ui: //cdn.bootcdn.net/ajax/libs/velocity/2.0.6/velocity.ui.min.js
+  anime: //cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js
+  fontawesome: //cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css
