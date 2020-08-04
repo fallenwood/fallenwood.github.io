@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://fallenwood.github.io/
+url: https://blog.fallenwood.org/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -128,7 +128,7 @@ theme_config:
     E-Mail: mailto:fallenwood@foxmail.com || fa fa-envelope
 
   links:
-    #Title: http://yoursite.com
+    Home: https://fallenwood.org
 
   reward_settings:
     # If true, reward will be displayed in every article by default.
@@ -237,3 +237,9 @@ theme_config:
     # If you want everyone visiting your site to see a uniform language, you can set a force language value
     # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
     language:
+
+vendors:
+  jquery: https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js
+  fancybox: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js
+  fancybox_css: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css
+  lazylod: https://cdn.bootcdn.net/ajax/libs/lozad.js/1.14.0/lozad.min.js
