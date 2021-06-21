@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.fallenwood.org/
+url: https://blog.fallenwood.net/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -128,7 +128,7 @@ theme_config:
     E-Mail: mailto:fallenwood@foxmail.com || fa fa-envelope
 
   links:
-    Home: https://fallenwood.org
+    Home: https://fallenwood.net
 
   reward_settings:
     # If true, reward will be displayed in every article by default.
