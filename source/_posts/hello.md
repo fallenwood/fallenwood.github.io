@@ -8,6 +8,6 @@ tags: []
 
 原来的branch备份在[这里](https://github.com/fallenwood/fallenwood.github.io/tree/gh-pages "")，暂时应该不会删，不过里面也没什么有价值的内容。
 
-立个falg, 大概会从今年开始重新写博客.
+立个 flag, 大概会从今年开始重新写博客.
 
 以上.
