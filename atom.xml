@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Does God Dice?</title>
+  <icon>https://blog.fallenwood.net/icon.png</icon>
+  
+  <link href="https://blog.fallenwood.net/atom.xml" rel="self"/>
+  
+  <link href="https://blog.fallenwood.net/"/>
+  <updated>2022-08-26T05:56:50.282Z</updated>
+  <id>https://blog.fallenwood.net/</id>
+  
+  <author>
+    <name>fallenwood</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个Jaeger Opentelemtry Logs没有生效的问题</title>
+    <link href="https://blog.fallenwood.net/2022/07/23/jaeger/"/>
+    <id>https://blog.fallenwood.net/2022/07/23/jaeger/</id>
+    <published>2022-07-23T12:10:28.000Z</published>
+    <updated>2022-08-26T05:56:50.282Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;TL;DR:&lt;br&gt;&lt;a href=&quot;https://github.com/jaegertracing/jaeger/blob/ddca3c84c3731025163d5b5bc4b1b648bc904fbf/cmd/collector/app/handler/otlp_receiver.go#L45-L52&quot;&gt;Jaeger 中只实现了 Opentelemetry Protocol 中的 traces , 并没有实现 metrics &amp;#x2F; logs&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;StartOTLPReceiver&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(options *flags.CollectorOptions, logger *zap.Logger, spanProcessor processor.SpanProcessor, tm *tenancy.TenancyManager)&lt;/span&gt;&lt;/span&gt; (component.TracesReceiver, &lt;span class=&quot;type&quot;&gt;error&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	otlpFactory := otlpreceiver.NewFactory()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; startOTLPReceiver(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		options,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		logger,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		spanProcessor,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		tm,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		otlpFactory,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		consumer.NewTraces,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		otlpFactory.CreateTracesReceiver,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="jaeger" scheme="https://blog.fallenwood.net/tags/jaeger/"/>
+    
+    <category term="opentelemetry" scheme="https://blog.fallenwood.net/tags/opentelemetry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello, Again</title>
+    <link href="https://blog.fallenwood.net/2020/06/23/hello/"/>
+    <id>https://blog.fallenwood.net/2020/06/23/hello/</id>
+    <published>2020-06-23T13:54:13.000Z</published>
+    <updated>2022-04-27T04:20:36.915Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;把旧的博客清空了, 顺便更新了一下About Me.&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+</feed>
