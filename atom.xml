@@ -6,7 +6,7 @@
   <link href="https://blog.fallenwood.net/atom.xml" rel="self"/>
   
   <link href="https://blog.fallenwood.net/"/>
-  <updated>2022-09-02T14:43:50.767Z</updated>
+  <updated>2022-09-02T14:58:56.126Z</updated>
   <id>https://blog.fallenwood.net/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/"/>
     <id>https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/</id>
     <published>2022-09-02T14:03:01.000Z</published>
-    <updated>2022-09-02T14:43:50.767Z</updated>
+    <updated>2022-09-02T14:58:56.126Z</updated>
     
     
-    <summary type="html">&lt;p&gt;使用 SignalR SSE([ServerSentEvents](&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&lt;/a&gt; “” “”)) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码中拿到的 HttpContext, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致实际上获取的数据有误.</summary>
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;使用 SignalR SSE ( &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;ServerSentEvents&lt;/a&gt; ) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致从 Context 读取到的东西有问题.</summary>
     
     
     
