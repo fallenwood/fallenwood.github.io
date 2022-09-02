@@ -6,7 +6,7 @@
   <link href="https://blog.fallenwood.net/atom.xml" rel="self"/>
   
   <link href="https://blog.fallenwood.net/"/>
-  <updated>2022-08-26T05:56:50.282Z</updated>
+  <updated>2022-09-02T14:43:50.767Z</updated>
   <id>https://blog.fallenwood.net/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SignalR中HttpContext复用的问题</title>
+    <link href="https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/"/>
+    <id>https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/</id>
+    <published>2022-09-02T14:03:01.000Z</published>
+    <updated>2022-09-02T14:43:50.767Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;使用 SignalR SSE([ServerSentEvents](&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&lt;/a&gt; “” “”)) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码中拿到的 HttpContext, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致实际上获取的数据有误.</summary>
+    
+    
+    
+    
+    <category term="c#" scheme="https://blog.fallenwood.net/tags/c/"/>
+    
+    <category term="signalr" scheme="https://blog.fallenwood.net/tags/signalr/"/>
+    
+  </entry>
   
   <entry>
     <title>一个Jaeger Opentelemtry Logs没有生效的问题</title>

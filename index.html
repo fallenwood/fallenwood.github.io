@@ -162,6 +162,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/11188646?s=460&u=03be4d4bfff58b76590a531210407491a747c661&v=4">
+      <meta itemprop="name" content="fallenwood">
+      <meta itemprop="description" content="Fallenwood's blog.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Does God Dice?">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/02/signalr_httpcontext/" class="post-title-link" itemprop="url">SignalR中HttpContext复用的问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-02 22:03:01 / 修改时间：22:43:50" itemprop="dateCreated datePublished" datetime="2022-09-02T22:03:01+08:00">2022-09-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用 SignalR SSE([ServerSentEvents](<a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events</a> “” “”)) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码中拿到的 HttpContext, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致实际上获取的数据有误.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/02/signalr_httpcontext/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.fallenwood.net/2022/07/23/jaeger/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -371,14 +437,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

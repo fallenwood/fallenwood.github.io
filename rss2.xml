@@ -15,8 +15,29 @@
     <atom:link href="https://blog.fallenwood.net/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Fallenwood&#39;s blog.</description>
-    <pubDate>Fri, 26 Aug 2022 05:56:50 GMT</pubDate>
+    <pubDate>Fri, 02 Sep 2022 14:43:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>SignalR中HttpContext复用的问题</title>
+      <link>https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/</link>
+      <guid>https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/</guid>
+      <pubDate>Fri, 02 Sep 2022 14:03:01 GMT</pubDate>
+      
+      <description>&lt;p&gt;使用 SignalR SSE([ServerSentEvents](&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&lt;/a&gt; “” “”)) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码中拿到的 HttpContext, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致实际上获取的数据有误.</description>
+      
+      
+      
+      
+      
+      <category domain="https://blog.fallenwood.net/tags/c/">c#</category>
+      
+      <category domain="https://blog.fallenwood.net/tags/signalr/">signalr</category>
+      
+      
+      <comments>https://blog.fallenwood.net/2022/09/02/signalr_httpcontext/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>一个Jaeger Opentelemtry Logs没有生效的问题</title>
