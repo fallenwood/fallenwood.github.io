@@ -110,7 +110,7 @@ Hmm, 重载有时候确实很 confusing, 我们上文提及的 ExecuteAsync 接�
 
 ## 其他
 
-为什么不用 Websockets? 我也想用, 但是公司的 Reserved Proxy 并不支持 Websockets. 如果有 WS 用情况将会, 好很多, 吗? 在 Websockets 中, 对于一个 SignalR connection, 应该只会存在一个 HttpContext, 也就是理论上讲并不会出现本文中出现的问题.
+为什么不用 Websockets? 我也想用, 但是公司的 Reserved Proxy 并不支持 Websockets. 如果有 WS 用情况将会, 好很多, 吗? 在 Websockets 中, 对于一个 SignalR connection, 应该只会存在一个 HttpContext, 也就是理论上讲并不会出现本文中出现的问题(但是对业务代码来说问题更大了).
 
 那么 Long Polling 呢, 和 SSE 一样, 也会出现 Post Request 的 Context 获取不到的问题, 但是我们并不会每次都获取到相同的 HttpContext, 而是每次都不一样, 想想更抓狂了. 
 
