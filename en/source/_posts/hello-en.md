@@ -7,4 +7,4 @@ Have set up a new site to handle English version of my blog.
 
 <!--more-->
 
-Will traslate exsiting ones to English later.
+Will translate existing ones to English later.

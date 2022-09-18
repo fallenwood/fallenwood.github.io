@@ -18,7 +18,7 @@ hexo.extend.filter.register('before_post_render', function(data){
     if (err.code !== 'ENOENT') throw err;
   }
 
-  const permalink = `\n本文链接: ${data.permalink}`;
+  const permalink = `\nPost link: ${data.permalink}`;
   data.content += permalink;
   
   return data;
