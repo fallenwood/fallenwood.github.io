@@ -15,13 +15,13 @@
     <atom:link href="https://blog.fallenwood.net/en/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Fallenwood&#39;s blog.</description>
-    <pubDate>Sun, 18 Sep 2022 14:56:04 GMT</pubDate>
+    <pubDate>Sun, 18 Sep 2022 15:09:13 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>Hello, Again</title>
-      <link>https://blog.fallenwood.net/en/2022/09/18/hello/</link>
-      <guid>https://blog.fallenwood.net/en/2022/09/18/hello/</guid>
+      <link>https://blog.fallenwood.net/en/2022/09/18/hello-en/</link>
+      <guid>https://blog.fallenwood.net/en/2022/09/18/hello-en/</guid>
       <pubDate>Sun, 18 Sep 2022 14:54:01 GMT</pubDate>
       
       <description>&lt;p&gt;Have set up a new site to handle English version of my blog.&lt;/p&gt;</description>
@@ -31,7 +31,7 @@
       
       
       
-      <comments>https://blog.fallenwood.net/en/2022/09/18/hello/#disqus_thread</comments>
+      <comments>https://blog.fallenwood.net/en/2022/09/18/hello-en/#disqus_thread</comments>
       
     </item>
     
