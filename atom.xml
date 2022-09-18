@@ -29,9 +29,9 @@
     
     
     
-    <category term="c#" scheme="https://blog.fallenwood.net/tags/c/"/>
-    
     <category term="signalr" scheme="https://blog.fallenwood.net/tags/signalr/"/>
+    
+    <category term="c#" scheme="https://blog.fallenwood.net/tags/c/"/>
     
   </entry>
   
@@ -60,7 +60,7 @@
     <link href="https://blog.fallenwood.net/2020/06/23/hello/"/>
     <id>https://blog.fallenwood.net/2020/06/23/hello/</id>
     <published>2020-06-23T13:54:13.000Z</published>
-    <updated>2022-04-27T04:20:36.915Z</updated>
+    <updated>2022-08-26T05:56:50.282Z</updated>
     
     
     <summary type="html">&lt;p&gt;把旧的博客清空了, 顺便更新了一下About Me.&lt;/p&gt;</summary>
