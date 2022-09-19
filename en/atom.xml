@@ -31,4 +31,23 @@
     
   </entry>
   
+  <entry>
+    <title>Issue on HttpContext Reuse in SignalR</title>
+    <link href="https://blog.fallenwood.net/en/2022/09/02/signalr_httpcontext/"/>
+    <id>https://blog.fallenwood.net/en/2022/09/02/signalr_httpcontext/</id>
+    <published>2022-09-02T14:03:01.000Z</published>
+    <updated>2022-09-19T01:08:33.852Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot; title=&quot;Background&quot;&gt;&lt;/a&gt;Background&lt;/h2&gt;&lt;p&gt;I come with a confusing issue when using SignalR SSE ( &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;ServerSentEvents&lt;/a&gt; ) : the HttpContext in SignalR Hub is always the same instance, regardless the Get Request to send data to Client, or the Post Request to receive data from Client, which leads to issue when retrieving from Context.</summary>
+    
+    
+    
+    
+    <category term="signalr" scheme="https://blog.fallenwood.net/en/tags/signalr/"/>
+    
+    <category term="c#" scheme="https://blog.fallenwood.net/en/tags/c/"/>
+    
+  </entry>
+  
 </feed>
