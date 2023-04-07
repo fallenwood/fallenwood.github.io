@@ -6,7 +6,7 @@
   <link href="https://blog.fallenwood.net/atom.xml" rel="self"/>
   
   <link href="https://blog.fallenwood.net/"/>
-  <updated>2022-09-02T15:08:08.299Z</updated>
+  <updated>2023-04-07T08:23:47.532Z</updated>
   <id>https://blog.fallenwood.net/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C#调用io_uring的一次尝试</title>
+    <link href="https://blog.fallenwood.net/2023/04/07/csharp_uring/"/>
+    <id>https://blog.fallenwood.net/2023/04/07/csharp_uring/</id>
+    <published>2023-04-07T04:32:18.000Z</published>
+    <updated>2023-04-07T08:23:47.532Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;“异步”这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把&lt;code&gt;async&lt;/code&gt;在中国带火&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&quot;https://ever17.blob.core.windows.net/blog/async_china.jpg&quot; alt=&quot;trends&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="c#" scheme="https://blog.fallenwood.net/tags/c/"/>
+    
+    <category term="io_uring" scheme="https://blog.fallenwood.net/tags/io-uring/"/>
+    
+  </entry>
   
   <entry>
     <title>SignalR中HttpContext复用的问题</title>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.fallenwood.net","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="“异步”这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把async在中国带火">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#调用io_uring的一次尝试">
+<meta property="og:url" content="https://blog.fallenwood.net/2023/04/07/csharp_uring/index.html">
+<meta property="og:site_name" content="Does God Dice?">
+<meta property="og:description" content="“异步”这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把async在中国带火">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ever17.blob.core.windows.net/blog/async_china.jpg">
+<meta property="article:published_time" content="2023-04-07T04:32:18.000Z">
+<meta property="article:modified_time" content="2023-04-07T08:23:47.532Z">
+<meta property="article:author" content="fallenwood">
+<meta property="article:tag" content="c#">
+<meta property="article:tag" content="io_uring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ever17.blob.core.windows.net/blog/async_china.jpg">
+
+<link rel="canonical" href="https://blog.fallenwood.net/2023/04/07/csharp_uring/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C#调用io_uring的一次尝试 | Does God Dice?</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Does God Dice?" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Does God Dice?" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Does God Dice?</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-english">
+
+    <a href="/en" rel="section"><i class="fa fa-home fa-fw"></i>English</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.fallenwood.net/2023/04/07/csharp_uring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/11188646?s=460&u=03be4d4bfff58b76590a531210407491a747c661&v=4">
+      <meta itemprop="name" content="fallenwood">
+      <meta itemprop="description" content="Fallenwood's blog.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Does God Dice?">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C#调用io_uring的一次尝试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-07 12:32:18 / 修改时间：16:23:47" itemprop="dateCreated datePublished" datetime="2023-04-07T12:32:18+08:00">2023-04-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>“异步”这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把<code>async</code>在中国带火</p>
+<p><img data-src="https://ever17.blob.core.windows.net/blog/async_china.jpg" alt="trends"></p>
+<span id="more"></span>
+
+<p>先背一遍概念, nodejs使用的libuv封装了eventloop, 异步相关的操作放在loop中进行. eventloop底层实现根据平台调用不同的api, linux的epoll, windows的iocp, 以及bsd的kqueue.</p>
+<p>一个典型的event loop实现大概是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="built_in">get_events</span>();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">handle_events</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你说这个太简单了? 我们来看看<a href="https://github.com/libuv/libuv/blob/244df24bf411a396ceaf69f8a80a98e5629ee584/src/unix/core.c#L384">真实的例子</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">uv_run</span><span class="params">(<span class="type">uv_loop_t</span>* loop, uv_run_mode mode)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (r != <span class="number">0</span> &amp;&amp; loop-&gt;stop_flag == <span class="number">0</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    uv__run_pending(loop);</span><br><span class="line">    uv__run_idle(loop);</span><br><span class="line">    uv__run_prepare(loop);</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    uv__io_poll(loop, timeout);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (r = <span class="number">0</span>; r &lt; <span class="number">8</span> &amp;&amp; !QUEUE_EMPTY(&amp;loop-&gt;pending_queue); r++)</span><br><span class="line">      uv__run_pending(loop);</span><br><span class="line">      </span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再看看<a href="https://github.com/libuv/libuv/blob/244df24bf411a396ceaf69f8a80a98e5629ee584/src/unix/posix-poll.c#L134">uv__io_poll</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">uv__io_poll</span><span class="params">(<span class="type">uv_loop_t</span>* loop, <span class="type">int</span> timeout)</span> &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">    nfds = poll(loop-&gt;poll_fds, (<span class="type">nfds_t</span>)loop-&gt;poll_fds_used, timeout);</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; loop-&gt;poll_fds_used; i++) &#123;</span><br><span class="line">      ...</span><br><span class="line">      pe-&gt;revents &amp;= w-&gt;pevents | POLLERR | POLLHUP;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (pe-&gt;revents != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (w == &amp;loop-&gt;signal_io_watcher) &#123;</span><br><span class="line">          have_signals = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          uv__metrics_update_idle_time(loop);</span><br><span class="line">          w-&gt;cb(loop, w, pe-&gt;revents);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        nevents++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到, 抛开各种细节不谈, 整体的框架符合上面的模型,</p>
+<p>再看看chenshuo的<a href="https://github.com/chenshuo/muduo/blob/master/muduo/net/EventLoop.cc#L103">教学框架</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">EventLoop::loop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">while</span> (!quit_)</span><br><span class="line">  &#123;</span><br><span class="line">    activeChannels_.<span class="built_in">clear</span>();</span><br><span class="line">    pollReturnTime_ = poller_-&gt;<span class="built_in">poll</span>(kPollTimeMs, &amp;activeChannels_);</span><br><span class="line">    ++iteration_;</span><br><span class="line">    <span class="keyword">if</span> (Logger::<span class="built_in">logLevel</span>() &lt;= Logger::TRACE)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printActiveChannels</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// TODO sort channel by priority</span></span><br><span class="line">    eventHandling_ = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (Channel* channel : activeChannels_)</span><br><span class="line">    &#123;</span><br><span class="line">      currentActiveChannel_ = channel;</span><br><span class="line">      currentActiveChannel_-&gt;<span class="built_in">handleEvent</span>(pollReturnTime_);</span><br><span class="line">    &#125;</span><br><span class="line">    currentActiveChannel_ = <span class="literal">NULL</span>;</span><br><span class="line">    eventHandling_ = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">doPendingFunctors</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  LOG_TRACE &lt;&lt; <span class="string">&quot;EventLoop &quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; stop looping&quot;</span>;</span><br><span class="line">  looping_ = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不愧是教科书, 与我们模型如出一辙 <del>因为我就是看这本书学的</del></p>
+<p>看到这里你可能想问, 那么, 这异步到底异在哪里, 不管<code>get_events</code>还是<code>handle_events</code>不都是同步的函数吗</p>
+<p>确实如此, 通常我们实现异步, 理所应当的会想到Queue: 当要执行某个操作的时候, 不是直接执行, 而是塞到队列里, 在另一个处从队列里取出再执行. 实际上epoll也是这么做的, 只不过Queue存在于<a href="https://github.com/torvalds/linux/blob/f2afccfefe7be1f7346564fe619277110d341f9b/fs/eventpoll.c#L177">内核</a>中, 而我们的<code>get_events</code>便是将内核队列里的events取出.</p>
+<p>这时候你可能又会问, 我知道epoll怎么用了, 那么这和你文章tag里的c# io_uring有什么关系呢.</p>
+<p>好吧, 废话完了, 我们进入正题.</p>
+<p>众所周知, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history#c-version-50">C#</a>是最早引入<code>async/await</code>来实现异步调用的语言之一. 注意到我没有说<code>async/await关键字</code>, 因为这俩加入的太晚了, 如果作为关键字会造成大量legecy代码broken, 毕竟不能让变量名和关键字重名是大部分编程语言的共识. 在现在版本的C#中你仍然可以自定义一个叫<code>async</code>的变量. 同时, 在CLR中, 也没有<code>async/await</code>的指令, 编译器会将其<a href="https://devblogs.microsoft.com/premier-developer/dissecting-the-async-methods-in-c/">编译成StateMachine</a>来执行. 同时你还可以自己实现<a href="https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskscheduler?view=net-8.0">TaskScheduler</a>来自定义对<code>Task</code>的调度.</p>
+<p>背完了概念, 那么, 他的底层实现也是event loop吗. <a href="https://github.com/dotnet/runtime/blob/d34a2a29e93e2606ff5b4ff2b4f4ba22d81cb57d/src/libraries/System.Net.Sockets/src/System/Net/Sockets/SocketAsyncEngine.Unix.cs#L176">是的, 没错</a></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">EventLoop</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        SocketEventHandler handler = <span class="keyword">new</span> SocketEventHandler(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> numEvents = EventBufferCount;</span><br><span class="line">            Interop.Error err = Interop.Sys.WaitForSocketEvents(_port, handler.Buffer, &amp;numEvents);</span><br><span class="line">            ...</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (handler.HandleSocketEvents(numEvents))</span><br><span class="line">            &#123;</span><br><span class="line">                ScheduleToProcessEvents();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Environment.FailFast(<span class="string">&quot;Exception thrown from SocketAsyncEngine event loop: &quot;</span> + e.ToString(), e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注释也提到底层的实现是<code>epoll/kqueue</code>: </p>
+<blockquote>
+<p>&#x2F;&#x2F; The responsibility of SocketAsyncEngine is to get notifications from epoll|kqueue<br>…</p>
+</blockquote>
+<p>好, 这下C#的实现我们可以假装搞明白了, 同时我们知道linux 5.1以后提供了io_uring, 那么io_uring也符合最上面给出的模型吗?</p>
+<p>首先由于io_uring的用法过于复杂, 作者亲自开发了<a href="https://github.com/axboe/liburing">一个库</a>来简化, 虽然还是很复杂.</p>
+<p>为了方便演示, 我们来用C#调用liburing, 写一个简单的tcp echo server.</p>
+<p>先把liburing头文件里inline的函数导出一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> IOURINGINLINE const</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;liburing.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;setup.c&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue.c&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;register.c&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syscall.c&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;version.c&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>然后引入<a href="https://github.com/tmds/Tmds.LibC">Tmds.Libc</a>来调用system api, 再自己导入几个liburing的, e.g.</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">DllImport(LibUringReExportSo, SetLastError = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">unsafe</span> <span class="keyword">extern</span> <span class="built_in">int</span> <span class="title">io_uring_queue_init</span>(<span class="params"><span class="built_in">uint</span> entries, io_uring* ring, <span class="built_in">uint</span> flags</span>)</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">DllImport(LibUringReExportSo, SetLastError = true)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">unsafe</span> <span class="keyword">extern</span> <span class="built_in">int</span> <span class="title">io_uring_wait_cqe</span>(<span class="params">io_uring* ring, io_uring_cqe** cqe_ptr</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以愉快的写C#了, 基本原理是从<a href="https://unixism.net/loti/tutorial/webserver_liburing.html">这里</a>抄过来的</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">unsafe</span> <span class="keyword">void</span> <span class="title">ServerLoop</span>(<span class="params"><span class="built_in">int</span> serverSocket, io_uring* ring</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    AddAcceptRequest(serverSocket, &amp;clientAddr, &amp;len, ring);</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> ret = io_uring_wait_cqe(ring, &amp;cqe);</span><br><span class="line">        <span class="keyword">var</span> req = (Request*)cqe-&gt;user_data;</span><br><span class="line">        <span class="keyword">switch</span> (req-&gt;event_type)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> EventType.EVENT_TYPE_ACCEPT:</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">case</span> EventType.EVENT_TYPE_READ:</span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">case</span> EventType.EVENT_TYPE_WRITE:</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        io_uring_cqe_seen(ring, cqe);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现, 仍然是上面这一套框架, 甚至这一套自定义event看起来比epoll更加清晰.</p>
+<p>那么, 既然epoll和uring在用法上大同小异, 肯定有人想在成熟的框架上加上io_uring的支持, <a href="https://github.com/libuv/libuv/issues/1947">libuv有</a>, <a href="https://github.com/dotnet/runtime/issues/12650">dotnet也有</a>. 如果本文的用法能对集成liburing进入dotnet有所启发就再好不过了<del>做梦.jpg</del></p>
+<p>以上, 完整demo在<a href="https://github.com/fallenwood/csharp_uring_demo">这里</a>, 但是写得非常难看, 而且各种泄露都没修, 能跑就行.</p>
+<hr>
+<p>本文链接: <a href="https://blog.fallenwood.net/2023/04/07/csharp_uring/">https://blog.fallenwood.net/2023/04/07/csharp_uring/</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/yuy0216">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/fallenwood">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c#</a>
+              <a href="/tags/io-uring/" rel="tag"># io_uring</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/02/signalr_httpcontext/" rel="next" title="SignalR中HttpContext复用的问题">
+      SignalR中HttpContext复用的问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fallenwood"
+      src="https://avatars3.githubusercontent.com/u/11188646?s=460&u=03be4d4bfff58b76590a531210407491a747c661&v=4">
+  <p class="site-author-name" itemprop="name">fallenwood</p>
+  <div class="site-description" itemprop="description">Fallenwood's blog.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fallenwood" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fallenwood" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fallenwood@foxmail.com" title="E-Mail → mailto:fallenwood@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://fallenwood.net/" title="https:&#x2F;&#x2F;fallenwood.net" rel="noopener" target="_blank">Home</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fallenwood</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '6e5d657101dda0af9dda',
+      clientSecret: '772da027fb271efefb6822497f42ddcbffe3e023',
+      repo        : 'fallenwood.github.io',
+      owner       : 'fallenwood',
+      admin       : ['fallenwood'],
+      id          : 'c35cc1f97287c542942312c10dc4a4b2',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
