@@ -6,7 +6,7 @@
   <link href="https://blog.fallenwood.net/atom.xml" rel="self"/>
   
   <link href="https://blog.fallenwood.net/"/>
-  <updated>2023-04-07T08:23:47.532Z</updated>
+  <updated>2023-09-09T07:27:41.281Z</updated>
   <id>https://blog.fallenwood.net/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于写一个简单RPC框架这件事 (0)</title>
+    <link href="https://blog.fallenwood.net/2023/09/09/rpc-0/"/>
+    <id>https://blog.fallenwood.net/2023/09/09/rpc-0/</id>
+    <published>2023-09-09T05:34:44.000Z</published>
+    <updated>2023-09-09T07:27:41.281Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;TODO: 中文版&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;本文链接: &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="RPC" scheme="https://blog.fallenwood.net/tags/RPC/"/>
+    
+    <category term="C#" scheme="https://blog.fallenwood.net/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C#调用io_uring的一次尝试</title>

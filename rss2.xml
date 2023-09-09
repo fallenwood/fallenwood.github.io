@@ -15,8 +15,37 @@
     <atom:link href="https://blog.fallenwood.net/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Fallenwood&#39;s blog.</description>
-    <pubDate>Fri, 07 Apr 2023 08:23:47 GMT</pubDate>
+    <pubDate>Sat, 09 Sep 2023 07:27:41 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>关于写一个简单RPC框架这件事 (0)</title>
+      <link>https://blog.fallenwood.net/2023/09/09/rpc-0/</link>
+      <guid>https://blog.fallenwood.net/2023/09/09/rpc-0/</guid>
+      <pubDate>Sat, 09 Sep 2023 05:34:44 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;TODO: 中文版&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;本文链接: &lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://blog.fallenwood.net/tags/RPC/">RPC</category>
+      
+      <category domain="https://blog.fallenwood.net/tags/C/">C#</category>
+      
+      
+      <comments>https://blog.fallenwood.net/2023/09/09/rpc-0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>C#调用io_uring的一次尝试</title>
