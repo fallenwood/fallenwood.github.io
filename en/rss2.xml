@@ -15,8 +15,29 @@
     <atom:link href="https://blog.fallenwood.net/en/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Fallenwood&#39;s blog.</description>
-    <pubDate>Sun, 18 Sep 2022 15:09:13 GMT</pubDate>
+    <pubDate>Sat, 09 Sep 2023 07:34:44 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Writing a Simple RPC Framework (0)</title>
+      <link>https://blog.fallenwood.net/en/2023/09/09/rpc-0/</link>
+      <guid>https://blog.fallenwood.net/en/2023/09/09/rpc-0/</guid>
+      <pubDate>Sat, 09 Sep 2023 05:34:44 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot; title=&quot;Background&quot;&gt;&lt;/a&gt;Background&lt;/h2&gt;&lt;p&gt;When I presented an internal sharing to teammates on how our service works as an RPC server, I wrote &lt;a href=&quot;https://github.com/fallenwood/bragiRpc/&quot;&gt;a simple RPC framework&lt;/a&gt; with C# and MessagePack to demonstrate.</description>
+      
+      
+      
+      
+      
+      <category domain="https://blog.fallenwood.net/en/tags/RPC/">RPC</category>
+      
+      <category domain="https://blog.fallenwood.net/en/tags/C/">C#</category>
+      
+      
+      <comments>https://blog.fallenwood.net/en/2023/09/09/rpc-0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Hello, Again</title>
