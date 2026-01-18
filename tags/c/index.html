@@ -92,17 +92,17 @@
           </h2>
           
             <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <p>趁着周末 <del>和AI</del> 把拖了很久的换 <em>Static Site Generator (SSG)</em> 的事情办了, 倒不是对 <em>Hexo</em> 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 <strong>native</strong> 一点的解决方案. <!---more--> 所以一直想用 c# 来搞一个版本。</p>
-<p>众所周知, <em>c#</em> 官方自带一个 <em>Razor</em> 的模板引擎, 可以说是非常强悍了, 但是拿来搞 <em>SSG</em> 多少有点水土不服, 第三方的 <em>Scriban</em> 体验又很差 ~~好像不支持 <code>{% base %}</code> ~~, 所以, 开摆</p>
-<p>直到前两天看到了<a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"><em>minijinja</em> 移植到 <em>go</em> 的新闻</a>, 等会儿你们 <em>minijinja</em> 不是用 <em>parser combinato</em> r写的吗, 移植这么方便吗. 看了一眼 <em>minijinja-go</em> 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 <em>go</em> 版本抄了一份 <a href="https://github.com/fallenwood/minijinja-csharp">c# 版本</a> 出来, 虽然用了反射不太好 trim, 但是能用就行</p>
-<p>然后就开心的让 Copilot 继续写了份 <em>SSG</em> 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行</p>
-<p><em>SSG</em> 目前还在继续 <del>让 Copilot</del> 开发, 等弄好之后会开源出来 <del>下一个有生之年</del></p>
+              <p>趁着周末 <del>和AI</del> 把拖了很久的换 <em>Static Site Generator (SSG)</em> 的事情办了, 倒不是对 <em>Hexo</em> 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 <strong>native</strong> 一点的解决方案. <!---more--> 所以一直想用 c# 来搞一个版本.</p>
+<p>众所周知, <em>c#</em> 官方自带一个 <em>Razor</em> 的模板引擎, 可以说是非常强悍了, 但是拿来搞 <em>SSG</em> 多少有点水土不服, 第三方的 <em>Scriban</em> 体验又很差 ~~好像不支持 {% base %} ~~, 所以, 开摆.</p>
+<p>直到前两天看到了<a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"><em>minijinja</em> 移植到 <em>go</em> 的新闻</a>, 等会儿你们 <em>minijinja</em> 不是用 <em>parser combinator</em> 写的吗, 移植这么方便吗. 看了一眼 <em>minijinja-go</em> 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 <em>go</em> 版本抄了一份 <a href="https://github.com/fallenwood/minijinja-csharp">c# 版本</a> 出来, 虽然用了反射不太好 trim, 但是能用就行.</p>
+<p>然后就开心的让 Copilot 继续写了份 <em>SSG</em> 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行.</p>
+<p><em>SSG</em> 目前还在继续 <del>让 Copilot</del> 开发, 等弄好之后会开源出来 <del>下一个有生之年</del>.</p>
 
             </div>
           
           <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
             <i class="fa-regular fa-calendar-days"></i>
-            2026-01-18 13:14 · 33分钟前
+            2026-01-18 13:14 · 39分钟前
           </div>
         </div>
       </div>
