@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Does God Dice?</title>
   <id>https://blog.fallenwood.net/</id>
-  <updated>2023-09-09T13:34:44.000Z</updated>
+  <updated>2026-01-18T13:14:03.000Z</updated>
   <link href="https://blog.fallenwood.net/" />
   <link href="https://blog.fallenwood.net/atom.xml" rel="self" />
   <author>
@@ -10,6 +10,19 @@
   </author>
   <generator uri="">Toki</generator>
   <subtitle>Fallenwood's blog.</subtitle>
+  <entry>
+    <title>关于换了个Site Generator这件事</title>
+    <id>https://blog.fallenwood.net/2026/01/18/site-generator/</id>
+    <link href="https://blog.fallenwood.net/2026/01/18/site-generator/" />
+    <updated>2026-01-18T13:14:03.000Z</updated>
+    <summary type="html">&lt;p&gt;趁着周末 &lt;del&gt;和AI&lt;/del&gt; 把拖了很久的换 &lt;em&gt;Static Site Generator (SSG)&lt;/em&gt; 的事情办了, 倒不是对 &lt;em&gt;Hexo&lt;/em&gt; 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 &lt;strong&gt;native&lt;/strong&gt; 一点的解决方案. &lt;!---more--&gt; 所以一直想用 c# 来搞一个版本。&lt;/p&gt;
+&lt;p&gt;众所周知, &lt;em&gt;c#&lt;/em&gt; 官方自带一个 &lt;em&gt;Razor&lt;/em&gt; 的模板引擎, 可以说是非常强悍了, 但是拿来搞 &lt;em&gt;SSG&lt;/em&gt; 多少有点水土不服, 第三方的 &lt;em&gt;Scriban&lt;/em&gt; 体验又很差 ~~好像不支持 &lt;code&gt;{% base %}&lt;/code&gt; ~~, 所以, 开摆&lt;/p&gt;
+&lt;p&gt;直到前两天看到了&lt;a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"&gt;&lt;em&gt;minijinja&lt;/em&gt; 移植到 &lt;em&gt;go&lt;/em&gt; 的新闻&lt;/a&gt;, 等会儿你们 &lt;em&gt;minijinja&lt;/em&gt; 不是用 &lt;em&gt;parser combinato&lt;/em&gt; r写的吗, 移植这么方便吗. 看了一眼 &lt;em&gt;minijinja-go&lt;/em&gt; 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 &lt;em&gt;go&lt;/em&gt; 版本抄了一份 &lt;a href="https://github.com/fallenwood/minijinja-csharp"&gt;c# 版本&lt;/a&gt; 出来, 虽然用了反射不太好 trim, 但是能用就行&lt;/p&gt;
+&lt;p&gt;然后就开心的让 Copilot 继续写了份 &lt;em&gt;SSG&lt;/em&gt; 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;SSG&lt;/em&gt; 目前还在继续 &lt;del&gt;让 Copilot&lt;/del&gt; 开发, 等弄好之后会开源出来 &lt;del&gt;下一个有生之年&lt;/del&gt;&lt;/p&gt;
+</summary>
+    <category term="c#" scheme="https://blog.fallenwood.net/tags/c/" />
+  </entry>
   <entry>
     <title>关于写一个简单RPC框架这件事 (0)</title>
     <id>https://blog.fallenwood.net/2023/09/09/rpc-0/</id>

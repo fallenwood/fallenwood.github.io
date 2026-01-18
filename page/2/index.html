@@ -70,101 +70,53 @@
 
   <main class="max-w-5xl mx-auto px-4 lg:px-6 py-10 flex-grow w-full">
     
-<section class="max-w-4xl mx-auto">
-  <div class="mb-8 p-6 bg-base-100 rounded-box shadow-sm border border-base-200">
-    <div class="flex items-center gap-3">
-      <div class="p-3 bg-primary/10 text-primary rounded-xl">
-        <i class="fa-solid fa-tags text-2xl"></i>
+<section class="w-full">
+  <div class="grid gap-6 md:grid-cols-1">
+    
+      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+        <div class="card-body">
+          <h2 class="card-title text-2xl">
+            <a href="/2020/06/23/hello-again/" class="hover:text-primary transition-colors">Hello, Again</a>
+          </h2>
+          
+            <div class="prose prose-base text-base-content/80 my-2 line-clamp-4 max-w-none">
+              <p>把旧的博客清空了, 顺便更新了一下About Me.</p>
+
+            </div>
+          
+          <div class="flex items-center gap-4 text-sm text-base-content/60 mt-1">
+            <span class="inline-flex items-center gap-1.5">
+              <i class="fa-regular fa-calendar-days"></i>
+              2020-06-23 21:54
+            </span>
+          </div>
+        </div>
       </div>
-      <div>
-        <h1 class="text-2xl font-bold">Tag Archive</h1>
-        <div class="badge badge-primary badge-outline mt-1">c#</div>
+    
+  </div>
+
+  
+    <div class="flex justify-center mt-12">
+      <div class="join shadow-sm">
+        
+          <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="/">
+            <i class="fa-solid fa-chevron-left"></i>
+          </a>
+        
+
+        
+          
+            <a class="join-item btn btn-md border-base-200 bg-base-100 hover:bg-base-200" href="/">1</a>
+          
+        
+          
+            <a class="join-item btn btn-md border-base-200 btn-primary text-primary-content" href="/page/2/">2</a>
+          
+        
+
+        
       </div>
     </div>
-  </div>
-
-  <div class="grid gap-4">
-    
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="/2026/01/18/site-generator/" class="hover:text-primary transition-colors">关于换了个Site Generator这件事</a>
-          </h2>
-          
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <p>趁着周末 <del>和AI</del> 把拖了很久的换 <em>Static Site Generator (SSG)</em> 的事情办了, 倒不是对 <em>Hexo</em> 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 <strong>native</strong> 一点的解决方案. <!---more--> 所以一直想用 c# 来搞一个版本。</p>
-<p>众所周知, <em>c#</em> 官方自带一个 <em>Razor</em> 的模板引擎, 可以说是非常强悍了, 但是拿来搞 <em>SSG</em> 多少有点水土不服, 第三方的 <em>Scriban</em> 体验又很差 ~~好像不支持 <code>{% base %}</code> ~~, 所以, 开摆</p>
-<p>直到前两天看到了<a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"><em>minijinja</em> 移植到 <em>go</em> 的新闻</a>, 等会儿你们 <em>minijinja</em> 不是用 <em>parser combinato</em> r写的吗, 移植这么方便吗. 看了一眼 <em>minijinja-go</em> 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 <em>go</em> 版本抄了一份 <a href="https://github.com/fallenwood/minijinja-csharp">c# 版本</a> 出来, 虽然用了反射不太好 trim, 但是能用就行</p>
-<p>然后就开心的让 Copilot 继续写了份 <em>SSG</em> 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行</p>
-<p><em>SSG</em> 目前还在继续 <del>让 Copilot</del> 开发, 等弄好之后会开源出来 <del>下一个有生之年</del></p>
-
-            </div>
-          
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
-            2026-01-18 13:14 · 33分钟前
-          </div>
-        </div>
-      </div>
-    
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="/2023/09/09/rpc-0/" class="hover:text-primary transition-colors">关于写一个简单RPC框架这件事 (0)</a>
-          </h2>
-          
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <p>TODO: 中文版</p>
-
-            </div>
-          
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
-            2023-09-09 13:34
-          </div>
-        </div>
-      </div>
-    
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="/2023/04/07/c-io-uring/" class="hover:text-primary transition-colors">C#调用io_uring的一次尝试</a>
-          </h2>
-          
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <p>&quot;异步&quot;这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把<code>async</code>在中国带火</p>
-<p><img src="https://ever17.blob.core.windows.net/blog/async_china.jpg" alt="trends" /></p>
-
-            </div>
-          
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
-            2023-04-07 12:32
-          </div>
-        </div>
-      </div>
-    
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="/2022/09/02/signalr-httpcontext/" class="hover:text-primary transition-colors">SignalR中HttpContext复用的问题</a>
-          </h2>
-          
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <h2 id="section">背景</h2>
-<p>使用 SignalR SSE ( <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">ServerSentEvents</a> ) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致从 Context 读取到的东西有问题.</p>
-
-            </div>
-          
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
-            2022-09-02 22:03
-          </div>
-        </div>
-      </div>
-    
-  </div>
-
   
 </section>
 

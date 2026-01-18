@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>关于换了个Site Generator这件事</title>
+  <meta name="description" content="Fallenwood&#39;s blog." />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.30.0/themes/prism-solarizedlight.min.css" />
+  
+  
+  
+
+  
+    <script defer src="https://unpkg.com/prismjs@1.30.0/components/prism-core.min.js"></script>
+    
+      <script defer src="https://unpkg.com/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+  
+
+  <link rel="stylesheet" href="https://blog.fallenwood.net/assets/main.css" />
+  <script defer src="https://blog.fallenwood.net/assets/main.js"></script>
+
+  <link rel="stylesheet" href="https://blog.fallenwood.net/assets/custom.css" />
+  
+</head>
+<body class="bg-base-200 text-base-content min-h-screen flex flex-col font-sans">
+  <div class="sticky top-0 z-50 bg-base-100/80 backdrop-blur border-b border-base-200">
+    <div class="navbar max-w-5xl mx-auto px-4 lg:px-6">
+      <div class="navbar-start">
+        <a class="btn btn-ghost text-xl px-0 relative hover:bg-transparent" href="https://blog.fallenwood.net/">
+          <span class="font-bold tracking-tight text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Does God Dice?</span>
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex lg:ml-auto">
+        <ul class="menu menu-horizontal px-1 gap-2 font-medium">
+          <li><a class="gap-2" href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i>首页</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/categories/"><i class="fa-solid fa-box-archive"></i>归档</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/tags/"><i class="fa-solid fa-tags"></i>标签</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/atom.xml"><i class="fa-solid fa-rss"></i>RSS</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i>关于</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end lg:hidden">
+        <button id="mobile-menu-open" class="btn btn-ghost btn-circle" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden w-full bg-base-100 border-b border-base-200">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+      <nav class="py-4">
+        <ul class="menu menu-lg w-full gap-2">
+          <li><a class="gap-3" href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i>首页</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/categories/"><i class="fa-solid fa-box-archive"></i>归档</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/tags/"><i class="fa-solid fa-tags"></i>标签</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/atom.xml"><i class="fa-solid fa-rss"></i>RSS</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i>关于</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-4 lg:px-6 py-10 flex-grow w-full">
+    
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
+  <!-- Mobile TOC Toggle and Scroll to Top (Fixed) -->
+  <div class="fixed right-6 bottom-8 z-50 flex flex-col gap-2">
+    <button id="mobile-toc-toggle" class="btn btn-circle shadow-lg lg:hidden bg-base-100 border border-base-200" aria-label="Toggle TOC">
+      <i class="fa-solid fa-list-ul"></i>
+    </button>
+    <button id="go-top" class="btn btn-circle shadow-lg bg-base-100 border border-base-200 hidden" aria-label="Go to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="lg:col-span-3 min-w-0">
+    <article class="card bg-base-100 shadow-sm border border-base-200">
+      <div class="card-body p-6 lg:p-10">
+        <header class="mb-8 border-b border-base-200 pb-8">
+          <h1 class="text-3xl lg:text-4xl font-bold mb-4 leading-tight">关于换了个Site Generator这件事</h1>
+          <div class="flex flex-wrap items-center gap-4 text-sm text-base-content/60">
+            <span class="flex items-center gap-2">
+              <i class="fa-regular fa-calendar"></i>
+              2026-01-18 13:14 (33分钟前)
+            </span>
+            
+          </div>
+        </header>
+
+        <div id="post-content" class="prose prose-base lg:prose-lg max-w-none">
+          <p>趁着周末 <del>和AI</del> 把拖了很久的换 <em>Static Site Generator (SSG)</em> 的事情办了, 倒不是对 <em>Hexo</em> 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 <strong>native</strong> 一点的解决方案. <!---more--> 所以一直想用 c# 来搞一个版本。</p>
+<p>众所周知, <em>c#</em> 官方自带一个 <em>Razor</em> 的模板引擎, 可以说是非常强悍了, 但是拿来搞 <em>SSG</em> 多少有点水土不服, 第三方的 <em>Scriban</em> 体验又很差 ~~好像不支持 <code>{% base %}</code> ~~, 所以, 开摆</p>
+<p>直到前两天看到了<a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"><em>minijinja</em> 移植到 <em>go</em> 的新闻</a>, 等会儿你们 <em>minijinja</em> 不是用 <em>parser combinato</em> r写的吗, 移植这么方便吗. 看了一眼 <em>minijinja-go</em> 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 <em>go</em> 版本抄了一份 <a href="https://github.com/fallenwood/minijinja-csharp">c# 版本</a> 出来, 虽然用了反射不太好 trim, 但是能用就行</p>
+<p>然后就开心的让 Copilot 继续写了份 <em>SSG</em> 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行</p>
+<p><em>SSG</em> 目前还在继续 <del>让 Copilot</del> 开发, 等弄好之后会开源出来 <del>下一个有生之年</del></p>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- Comments -->
+    
+      <div class="card bg-base-100 shadow-sm border border-base-200 mt-8">
+        <div class="card-body p-6 lg:p-10">
+          <h2 class="text-xl font-bold mb-4">Comments</h2>
+          <div id="gitalk-container"></div>
+        </div>
+      </div>
+    
+  </main>
+
+  <!-- Sidebar (Desktop) -->
+  
+    <aside class="hidden lg:block lg:col-span-1">
+      <div class="sticky top-24">
+        <div class="card bg-base-100 shadow-sm border border-base-200 max-h-[calc(100vh-8rem)] overflow-auto">
+          <div class="card-body p-5">
+            <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
+              <a role="tab" class="tab tab-active" data-tab-target="toc-desktop">Contents</a>
+              <a role="tab" class="tab" data-tab-target="overview-desktop">Overview</a>
+            </div>
+
+            <!-- TOC Tab -->
+            <div id="toc-desktop" class="tab-content block">
+              <nav>
+                <ol id="toc-list" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
+                <div id="toc-empty" class="text-sm text-base-content/50 italic hidden">No table of contents</div>
+              </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview-desktop" class="tab-content hidden space-y-4">
+              <div>
+                <h3 class="font-bold text-lg">Does God Dice?</h3>
+                <p class="text-sm text-base-content/70 mt-1">Fallenwood&#39;s blog.</p>
+              </div>
+              <div class="divider my-2"></div>
+              <ul class="menu menu-sm p-0 rounded-box">
+                <li><a href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i> About</a></li>
+                <li><a href="https://blog.fallenwood.net/atom.xml"><i class="fa-solid fa-rss"></i> RSS</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  
+</div>
+
+<!-- Mobile Drawer for TOC -->
+<div id="toc-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
+  <div class="absolute inset-0 bg-black/50" id="toc-backdrop"></div>
+  <div class="absolute right-0 top-0 h-full w-80 bg-base-100 shadow-2xl p-6 overflow-y-auto">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-bold text-lg">Menu</h3>
+      <button id="toc-close" class="btn btn-circle btn-ghost btn-sm">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
+      <a role="tab" class="tab tab-active" data-tab-target="toc-mobile">Contents</a>
+      <a role="tab" class="tab" data-tab-target="overview-mobile">Overview</a>
+    </div>
+
+    <!-- TOC Tab Mobile -->
+    <div id="toc-mobile" class="tab-content block">
+       <ol id="toc-list-drawer" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
+    </div>
+
+    <!-- Overview Tab Mobile -->
+    <div id="overview-mobile" class="tab-content hidden space-y-4">
+      <div>
+        <h3 class="font-bold text-lg">Does God Dice?</h3>
+        <p class="text-sm text-base-content/70 mt-1">Fallenwood&#39;s blog.</p>
+      </div>
+      <div class="divider my-2"></div>
+      <ul class="menu menu-sm p-0 rounded-box">
+          <li><a href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="https://blog.fallenwood.net/categories/"><i class="fa-solid fa-box-archive"></i> Archives</a></li>
+          <li><a href="https://blog.fallenwood.net/tags/"><i class="fa-solid fa-tags"></i> Tags</a></li>
+          <li><a href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i> About</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: "6e5d657101dda0af9dda",
+      clientSecret: "5a1208e558ab420cd7700e96e5c564e028988ca0",
+      repo: "fallenwood.github.io",
+      owner: "fallenwood",
+      admin: ["fallenwood"],
+      id: "c2f8af0f549a0d7b7faad50529685a78",
+      language: "",
+      distractionFreeMode: true,
+    });
+    gitalk.render("gitalk-container");
+  </script>
+
+
+<script>
+  (function() {
+    // Top Button Visibility
+    const topBtn = document.getElementById('go-top');
+    if (topBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          topBtn.classList.remove('hidden');
+        } else {
+          topBtn.classList.add('hidden');
+        }
+      });
+      topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // TOC Generation
+    const content = document.getElementById('post-content');
+    const tocList = document.getElementById('toc-list');
+    const tocListDrawer = document.getElementById('toc-list-drawer');
+    const tocEmpty = document.getElementById('toc-empty');
+
+    if (content && tocList) {
+      const headings = Array.from(content.querySelectorAll('h2, h3'));
+      if (headings.length === 0) {
+        // Hide TOC tab and switch to Overview if no headings
+        const groups = [
+          { tab: '[data-tab-target="toc-desktop"]', overview: '[data-tab-target="overview-desktop"]', contentId: 'toc-desktop', overviewId: 'overview-desktop' },
+          { tab: '[data-tab-target="toc-mobile"]', overview: '[data-tab-target="overview-mobile"]', contentId: 'toc-mobile', overviewId: 'overview-mobile' }
+        ];
+
+        groups.forEach(g => {
+          const tocTab = document.querySelector(g.tab);
+          const overviewTab = document.querySelector(g.overview);
+          const tocContent = document.getElementById(g.contentId);
+          const overviewContent = document.getElementById(g.overviewId);
+
+          if (tocTab && overviewTab && tocContent && overviewContent) {
+            tocTab.classList.add('hidden');
+            if (tocTab.parentElement) {
+              tocTab.parentElement.classList.remove('grid-cols-2');
+              tocTab.parentElement.classList.add('grid-cols-1');
+            }
+            tocTab.classList.remove('tab-active');
+            overviewTab.classList.add('tab-active');
+            
+            tocContent.classList.remove('block');
+            tocContent.classList.add('hidden');
+            overviewContent.classList.remove('hidden');
+            overviewContent.classList.add('block');
+          }
+        });
+
+        if (tocEmpty) tocEmpty.classList.remove('hidden');
+      } else {
+        const slugify = (text) => text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+        
+        headings.forEach(heading => {
+            if (!heading.id) heading.id = slugify(heading.textContent);
+            
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + heading.id;
+            a.textContent = heading.textContent;
+            a.className = heading.tagName === 'H3' ? 'pl-6 text-sm opacity-90' : 'font-medium';
+            
+            li.appendChild(a);
+            tocList.appendChild(li);
+            if (tocListDrawer) tocListDrawer.appendChild(li.cloneNode(true));
+        });
+      }
+    }
+
+    // Mobile Drawer Logic
+    const drawer = document.getElementById('toc-drawer');
+    const backdrop = document.getElementById('toc-backdrop');
+    const closeBtn = document.getElementById('toc-close');
+    const toggleBtn = document.getElementById('mobile-toc-toggle');
+
+    if (drawer && toggleBtn) {
+      toggleBtn.addEventListener('click', () => drawer.classList.remove('translate-x-full'));
+      const closeDrawer = () => drawer.classList.add('translate-x-full');
+      
+      if (backdrop) backdrop.addEventListener('click', closeDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    }
+
+    // Toggle Tabs
+    const setupTabs = (containerSelector) => {
+        const tabs = document.querySelectorAll(`${containerSelector} [data-tab-target]`);
+        if (!tabs.length) return;
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Find parent container (card-body or sidebar div)
+                const parent = tab.closest('.card-body, .p-6');
+                if(!parent) return;
+
+                // Deactivate all tabs in this container
+                parent.querySelectorAll('[data-tab-target]').forEach(t => t.classList.remove('tab-active'));
+                
+                // Hide all contents in this container
+                parent.querySelectorAll('.tab-content').forEach(c => {
+                    c.classList.add('hidden');
+                    c.classList.remove('block');
+                });
+
+                // Activate clicked tab
+                tab.classList.add('tab-active');
+                
+                // Show target content
+                const targetId = tab.getAttribute('data-tab-target');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.classList.remove('hidden');
+                    target.classList.add('block');
+                }
+            });
+        });
+    }
+
+    setupTabs('.sticky'); // Desktop Sidebar
+    setupTabs('#toc-drawer'); // Mobile Drawer
+
+  })();
+</script>
+
+  </main>
+
+  <footer class="footer footer-center p-10 bg-base-100 text-base-content rounded">
+    <div>
+      <p>© 2015 - 2026 <span class="text-secondary">♥</span> Does God Dice?</p>
+      <p>Powered by <a href="#" class="link link-hover font-bold">Toki</a></p>
+    </div>
+  </footer>
+  
+    <style>
+      mjx-container:not([display="true"]) {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0.05em;
+      }
+      mjx-container:not([display="true"]) svg {
+        display: inline-block;
+      }
+      mjx-container[display="true"] {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+      mjx-container[display="true"] svg {
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+    <script>
+      if (window.mediumZoom) {
+        window.mediumZoom('.prose img');
+      }
+    </script>
+  
+
+  <script>
+    (function() {
+      const menu = document.getElementById('mobile-menu');
+      const openBtn = document.getElementById('mobile-menu-open');
+      const toggleMenu = () => {
+        if (!menu) return;
+        menu.classList.toggle('hidden');
+      };
+
+      if (openBtn) openBtn.addEventListener('click', toggleMenu);
+    })();
+  </script>
+</body>
+</html>
