@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
+  <!-- Mobile TOC Toggle and Scroll to Top (Fixed) -->
+  <div class="fixed right-6 bottom-8 z-50 flex flex-col gap-2">
+    <button id="mobile-toc-toggle" class="btn btn-circle shadow-lg lg:hidden bg-base-100 border border-base-200" aria-label="Toggle TOC">
+      <i class="fa-solid fa-list-ul"></i>
+    </button>
+    <button id="go-top" class="btn btn-circle shadow-lg bg-base-100 border border-base-200 hidden" aria-label="Go to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="lg:col-span-3 min-w-0">
+    <article class="card bg-base-100 shadow-sm border border-base-200">
+      <div class="card-body p-6 lg:p-10">
+        <header class="mb-8 border-b border-base-200 pb-8">
+          <h1 class="text-3xl lg:text-4xl font-bold mb-4 leading-tight">{{ post.title }}</h1>
+          <div class="flex flex-wrap items-center gap-4 text-sm text-base-content/60">
+            <span class="flex items-center gap-2">
+              <i class="fa-regular fa-calendar"></i>
+              {{ post.date }}{% if post.dateRelative %} ({{ post.dateRelative }}){% endif %}
+            </span>
+            {% if post.categories %}
+              <span class="flex items-center gap-2">
+                <i class="fa-regular fa-folder"></i>
+                {% for cat in post.categories %}
+                  <a href="{{ site.baseUrl }}categories/{{ cat }}/" class="link link-hover">{{ cat }}</a>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </header>
+
+        <div id="post-content" class="prose prose-base lg:prose-lg max-w-none">
+          {{ post.content | safe }}
+        </div>
+      </div>
+    </article>
+
+    <!-- Comments -->
+    {% if site.gitalk and site.gitalk.enabled %}
+      <div class="card bg-base-100 shadow-sm border border-base-200 mt-8">
+        <div class="card-body p-6 lg:p-10">
+          <h2 class="text-xl font-bold mb-4">Comments</h2>
+          <div id="gitalk-container"></div>
+        </div>
+      </div>
+    {% endif %}
+  </main>
+
+  <!-- Sidebar (Desktop) -->
+  {% if site.sidebar and site.sidebar.show %}
+    <aside class="hidden lg:block lg:col-span-1">
+      <div class="sticky top-24">
+        <div class="card bg-base-100 shadow-sm border border-base-200 max-h-[calc(100vh-8rem)] overflow-auto">
+          <div class="card-body p-5">
+            <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
+              <a role="tab" class="tab tab-active" data-tab-target="toc-desktop">Contents</a>
+              <a role="tab" class="tab" data-tab-target="overview-desktop">Overview</a>
+            </div>
+
+            <!-- TOC Tab -->
+            <div id="toc-desktop" class="tab-content block">
+              <nav>
+                <ol id="toc-list" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
+                <div id="toc-empty" class="text-sm text-base-content/50 italic hidden">No table of contents</div>
+              </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview-desktop" class="tab-content hidden space-y-4">
+              <div>
+                <h3 class="font-bold text-lg">{{ site.title }}</h3>
+                <p class="text-sm text-base-content/70 mt-1">{{ site.description }}</p>
+              </div>
+              <div class="divider my-2"></div>
+              <ul class="menu menu-sm p-0 rounded-box">
+                <li><a href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i> About</a></li>
+                <li><a href="{{ site.baseUrl }}atom.xml"><i class="fa-solid fa-rss"></i> RSS</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  {% endif %}
+</div>
+
+<!-- Mobile Drawer for TOC -->
+<div id="toc-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
+  <div class="absolute inset-0 bg-black/50" id="toc-backdrop"></div>
+  <div class="absolute right-0 top-0 h-full w-80 bg-base-100 shadow-2xl p-6 overflow-y-auto">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-bold text-lg">Menu</h3>
+      <button id="toc-close" class="btn btn-circle btn-ghost btn-sm">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
+      <a role="tab" class="tab tab-active" data-tab-target="toc-mobile">Contents</a>
+      <a role="tab" class="tab" data-tab-target="overview-mobile">Overview</a>
+    </div>
+
+    <!-- TOC Tab Mobile -->
+    <div id="toc-mobile" class="tab-content block">
+       <ol id="toc-list-drawer" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
+    </div>
+
+    <!-- Overview Tab Mobile -->
+    <div id="overview-mobile" class="tab-content hidden space-y-4">
+      <div>
+        <h3 class="font-bold text-lg">{{ site.title }}</h3>
+        <p class="text-sm text-base-content/70 mt-1">{{ site.description }}</p>
+      </div>
+      <div class="divider my-2"></div>
+      <ul class="menu menu-sm p-0 rounded-box">
+          <li><a href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="{{ site.baseUrl }}categories/"><i class="fa-solid fa-box-archive"></i> Archives</a></li>
+          <li><a href="{{ site.baseUrl }}tags/"><i class="fa-solid fa-tags"></i> Tags</a></li>
+          <li><a href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i> About</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% if site.gitalk and site.gitalk.enabled %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: "{{ site.gitalk.clientId }}",
+      clientSecret: "{{ site.gitalk.clientSecret }}",
+      repo: "{{ site.gitalk.repo }}",
+      owner: "{{ site.gitalk.owner }}",
+      admin: {{ site.gitalk.admin | tojson | safe }},
+      id: "{{ post.hash }}",
+      language: "",
+      distractionFreeMode: true,
+    });
+    gitalk.render("gitalk-container");
+  </script>
+{% endif %}
+
+<script>
+  (function() {
+    // Top Button Visibility
+    const topBtn = document.getElementById('go-top');
+    if (topBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          topBtn.classList.remove('hidden');
+        } else {
+          topBtn.classList.add('hidden');
+        }
+      });
+      topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // TOC Generation
+    const content = document.getElementById('post-content');
+    const tocList = document.getElementById('toc-list');
+    const tocListDrawer = document.getElementById('toc-list-drawer');
+    const tocEmpty = document.getElementById('toc-empty');
+
+    if (content && tocList) {
+      const headings = Array.from(content.querySelectorAll('h2, h3'));
+      if (headings.length === 0) {
+        // Hide TOC tab and switch to Overview if no headings
+        const groups = [
+          { tab: '[data-tab-target="toc-desktop"]', overview: '[data-tab-target="overview-desktop"]', contentId: 'toc-desktop', overviewId: 'overview-desktop' },
+          { tab: '[data-tab-target="toc-mobile"]', overview: '[data-tab-target="overview-mobile"]', contentId: 'toc-mobile', overviewId: 'overview-mobile' }
+        ];
+
+        groups.forEach(g => {
+          const tocTab = document.querySelector(g.tab);
+          const overviewTab = document.querySelector(g.overview);
+          const tocContent = document.getElementById(g.contentId);
+          const overviewContent = document.getElementById(g.overviewId);
+
+          if (tocTab && overviewTab && tocContent && overviewContent) {
+            tocTab.classList.add('hidden');
+            if (tocTab.parentElement) {
+              tocTab.parentElement.classList.remove('grid-cols-2');
+              tocTab.parentElement.classList.add('grid-cols-1');
+            }
+            tocTab.classList.remove('tab-active');
+            overviewTab.classList.add('tab-active');
+            
+            tocContent.classList.remove('block');
+            tocContent.classList.add('hidden');
+            overviewContent.classList.remove('hidden');
+            overviewContent.classList.add('block');
+          }
+        });
+
+        if (tocEmpty) tocEmpty.classList.remove('hidden');
+      } else {
+        const slugify = (text) => text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+        
+        headings.forEach(heading => {
+            if (!heading.id) heading.id = slugify(heading.textContent);
+            
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + heading.id;
+            a.textContent = heading.textContent;
+            a.className = heading.tagName === 'H3' ? 'pl-6 text-sm opacity-90' : 'font-medium';
+            
+            li.appendChild(a);
+            tocList.appendChild(li);
+            if (tocListDrawer) tocListDrawer.appendChild(li.cloneNode(true));
+        });
+      }
+    }
+
+    // Mobile Drawer Logic
+    const drawer = document.getElementById('toc-drawer');
+    const backdrop = document.getElementById('toc-backdrop');
+    const closeBtn = document.getElementById('toc-close');
+    const toggleBtn = document.getElementById('mobile-toc-toggle');
+
+    if (drawer && toggleBtn) {
+      toggleBtn.addEventListener('click', () => drawer.classList.remove('translate-x-full'));
+      const closeDrawer = () => drawer.classList.add('translate-x-full');
+      
+      if (backdrop) backdrop.addEventListener('click', closeDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    }
+
+    // Toggle Tabs
+    const setupTabs = (containerSelector) => {
+        const tabs = document.querySelectorAll(`${containerSelector} [data-tab-target]`);
+        if (!tabs.length) return;
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Find parent container (card-body or sidebar div)
+                const parent = tab.closest('.card-body, .p-6');
+                if(!parent) return;
+
+                // Deactivate all tabs in this container
+                parent.querySelectorAll('[data-tab-target]').forEach(t => t.classList.remove('tab-active'));
+                
+                // Hide all contents in this container
+                parent.querySelectorAll('.tab-content').forEach(c => {
+                    c.classList.add('hidden');
+                    c.classList.remove('block');
+                });
+
+                // Activate clicked tab
+                tab.classList.add('tab-active');
+                
+                // Show target content
+                const targetId = tab.getAttribute('data-tab-target');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.classList.remove('hidden');
+                    target.classList.add('block');
+                }
+            });
+        });
+    }
+
+    setupTabs('.sticky'); // Desktop Sidebar
+    setupTabs('#toc-drawer'); // Mobile Drawer
+
+  })();
+</script>
+{% endblock %}
+{% endblock %}

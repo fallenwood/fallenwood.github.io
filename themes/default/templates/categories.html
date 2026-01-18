@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto">
+  <div class="card bg-base-100 shadow-sm border border-base-200">
+    <div class="card-body p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="p-3 bg-primary/10 text-primary rounded-xl">
+           <i class="fa-solid fa-folder-open text-2xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold">Categories</h1>
+      </div>
+      
+      <div class="flex flex-wrap gap-3">
+        {% for category in categories %}
+          <a class="btn btn-outline border-base-300 hover:border-primary hover:bg-primary hover:text-primary-content normal-case" href="{{ category.url }}">
+             {{ category.name }} 
+             <div class="badge badge-secondary badge-sm">{{ category.count }}</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

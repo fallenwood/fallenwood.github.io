@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title if page and page.title else site.title }}</title>
+  <meta name="description" content="{{ site.description }}" />
+  {% if site.plugins and site.plugins.fontawesome and site.plugins.fontawesome.enabled %}
+    <link rel="stylesheet" href="{{ site.plugins.fontawesome.cdn }}" />
+  {% endif %}
+  {% if site.plugins and site.plugins.prismjs and site.plugins.prismjs.enabled %}
+    <link rel="stylesheet" href="{{ site.plugins.prismjs.cssCdn }}" />
+  {% endif %}
+  {% if site.plugins and site.plugins.highlightjs and site.plugins.highlightjs.enabled %}
+    <link rel="stylesheet" href="{{ site.plugins.highlightjs.cssCdn }}" />
+  {% endif %}
+  {% if site.plugins and site.plugins.shiki and site.plugins.shiki.enabled %}
+    <link rel="stylesheet" href="{{ site.plugins.shiki.styleCdn }}" />
+  {% endif %}
+
+  {% if site.plugins and site.plugins.prismjs and site.plugins.prismjs.enabled %}
+    <script defer src="{{ site.plugins.prismjs.jsCdn }}"></script>
+    {% if site.plugins.prismjs.autoloaderEnabled and site.plugins.prismjs.autoloaderCdn %}
+      <script defer src="{{ site.plugins.prismjs.autoloaderCdn }}"></script>
+    {% endif %}
+  {% endif %}
+
+  <link rel="stylesheet" href="{{ site.baseUrl }}assets/main.css" />
+  <script defer src="{{ site.baseUrl }}assets/main.js"></script>
+
+  <link rel="stylesheet" href="{{ site.baseUrl }}assets/custom.css" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-base-200 text-base-content min-h-screen flex flex-col font-sans">
+  <div class="sticky top-0 z-50 bg-base-100/80 backdrop-blur border-b border-base-200">
+    <div class="navbar max-w-5xl mx-auto px-4 lg:px-6">
+      <div class="navbar-start">
+        <a class="btn btn-ghost text-xl px-0 relative hover:bg-transparent" href="{{ site.baseUrl }}">
+          <span class="font-bold tracking-tight text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{{ site.title }}</span>
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex lg:ml-auto">
+        <ul class="menu menu-horizontal px-1 gap-2 font-medium">
+          <li><a class="gap-2" href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i>{{ site.nav.home }}</a></li>
+          <li><a class="gap-2" href="{{ site.baseUrl }}categories/"><i class="fa-solid fa-box-archive"></i>{{ site.nav.archive }}</a></li>
+          <li><a class="gap-2" href="{{ site.baseUrl }}tags/"><i class="fa-solid fa-tags"></i>{{ site.nav.tags }}</a></li>
+          <li><a class="gap-2" href="{{ site.baseUrl }}atom.xml"><i class="fa-solid fa-rss"></i>{{ site.nav.rss }}</a></li>
+          <li><a class="gap-2" href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i>{{ site.nav.about }}</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end lg:hidden">
+        <button id="mobile-menu-open" class="btn btn-ghost btn-circle" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden w-full bg-base-100 border-b border-base-200">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+      <nav class="py-4">
+        <ul class="menu menu-lg w-full gap-2">
+          <li><a class="gap-3" href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i>{{ site.nav.home }}</a></li>
+          <li><a class="gap-3" href="{{ site.baseUrl }}categories/"><i class="fa-solid fa-box-archive"></i>{{ site.nav.archive }}</a></li>
+          <li><a class="gap-3" href="{{ site.baseUrl }}tags/"><i class="fa-solid fa-tags"></i>{{ site.nav.tags }}</a></li>
+          <li><a class="gap-3" href="{{ site.baseUrl }}atom.xml"><i class="fa-solid fa-rss"></i>{{ site.nav.rss }}</a></li>
+          <li><a class="gap-3" href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i>{{ site.nav.about }}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-4 lg:px-6 py-10 flex-grow w-full">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer footer-center p-10 bg-base-100 text-base-content rounded">
+    <div>
+      <p>© {{ site.footer.yearStart }} - {{ site.footer.yearCurrent }} <span class="text-secondary">♥</span> {{ site.title }}</p>
+      <p>Powered by <a href="#" class="link link-hover font-bold">{{ site.footer.poweredBy }}</a></p>
+    </div>
+  </footer>
+  {% if site.plugins and site.plugins.mathjax and site.plugins.mathjax.enabled %}
+    <style>
+      mjx-container:not([display="true"]) {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0.05em;
+      }
+      mjx-container:not([display="true"]) svg {
+        display: inline-block;
+      }
+      mjx-container[display="true"] {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+      mjx-container[display="true"] svg {
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script async src="{{ site.plugins.mathjax.cdn }}"></script>
+  {% endif %}
+  {% if site.plugins and site.plugins.highlightjs and site.plugins.highlightjs.enabled %}
+    <script defer src="{{ site.plugins.highlightjs.jsCdn }}"></script>
+    {% if site.plugins.highlightjs.languages and site.plugins.highlightjs.languages.size > 0 %}
+      {% for lang in site.plugins.highlightjs.languages %}
+        {% if site.plugins.highlightjs.languageCdnBase %}
+          <script defer src="{{ site.plugins.highlightjs.languageCdnBase }}/{{ lang }}.min.js"></script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <script>
+      if (window.hljs) {
+        window.hljs.highlightAll();
+      }
+    </script>
+  {% endif %}
+  {% if site.plugins and site.plugins.mediumzoom and site.plugins.mediumzoom.enabled %}
+    <script src="{{ site.plugins.mediumzoom.cdn }}"></script>
+    <script>
+      if (window.mediumZoom) {
+        window.mediumZoom('.prose img');
+      }
+    </script>
+  {% endif %}
+
+  <script>
+    (function() {
+      const menu = document.getElementById('mobile-menu');
+      const openBtn = document.getElementById('mobile-menu-open');
+      const toggleMenu = () => {
+        if (!menu) return;
+        menu.classList.toggle('hidden');
+      };
+
+      if (openBtn) openBtn.addEventListener('click', toggleMenu);
+    })();
+  </script>
+</body>
+</html>

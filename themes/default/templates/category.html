@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto">
+  <div class="mb-8 p-6 bg-base-100 rounded-box shadow-sm border border-base-200">
+    <div class="flex items-center gap-3">
+      <div class="p-3 bg-primary/10 text-primary rounded-xl">
+        <i class="fa-solid fa-box-archive text-2xl"></i>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold">Category Archive</h1>
+        <p class="text-base-content/60">{{ category }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid gap-4">
+    {% for post in posts %}
+      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+        <div class="card-body">
+          <h2 class="card-title text-xl">
+            <a href="{{ post.url }}" class="hover:text-primary transition-colors">{{ post.title }}</a>
+          </h2>
+          {% if post.excerpt %}
+            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
+              {{ post.excerpt | safe }}
+            </div>
+          {% endif %}
+          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
+            <i class="fa-regular fa-calendar-days"></i>
+            {{ post.date }}{% if post.dateRelative %} · {{ post.dateRelative }}{% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if pagination and pagination.total > 1 %}
+    <div class="flex justify-center mt-12">
+      <div class="join shadow-sm">
+        {% if pagination.prevUrl %}
+          <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.prevUrl }}">
+            <i class="fa-solid fa-chevron-left"></i>
+          </a>
+        {% endif %}
+        
+        {% for item in pagination.items %}
+          {% if item.isEllipsis %}
+            <span class="join-item btn btn-md bg-base-100 border-base-200 btn-disabled">...</span>
+          {% else %}
+            <a class="join-item btn btn-md border-base-200 {% if item.isCurrent %}btn-primary text-primary-content{% else %}bg-base-100 hover:bg-base-200{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if pagination.nextUrl %}
+          <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.nextUrl }}">
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

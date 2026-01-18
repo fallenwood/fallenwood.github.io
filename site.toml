@@ -1,0 +1,65 @@
+title = "Does God Dice?"
+description = "Fallenwood's blog."
+author = "Fallenwood"
+baseUrl = "https://blog.fallenwood.net/"
+theme = "themes/default"
+
+[gitalk]
+enabled = true
+clientId = "6e5d657101dda0af9dda"
+clientSecret = "5a1208e558ab420cd7700e96e5c564e028988ca0"
+repo = "fallenwood.github.io"
+owner = "fallenwood"
+admin = ["fallenwood"]
+
+[nav]
+home = "首页"
+archive = "归档"
+tags = "标签"
+rss = "RSS"
+about = "关于"
+
+[date]
+format = "yyyy-MM-dd HH:mm"
+relativeDays = 7
+locale = "zh-CN"
+
+[sidebar]
+show = true
+
+[paging]
+perPage = 5
+
+[footer]
+yearStart = 2015
+poweredBy = "Toki"
+
+[plugins.mathjax]
+enabled = true
+cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+
+[plugins.fontawesome]
+enabled = true
+cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+
+[plugins.prismjs]
+enabled = true
+cssCdn = "https://unpkg.com/prismjs@1.30.0/themes/prism-solarizedlight.min.css"
+jsCdn = "https://unpkg.com/prismjs@1.30.0/components/prism-core.min.js"
+autoloaderEnabled = true
+autoloaderCdn = "https://unpkg.com/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"
+
+[plugins.highlightjs]
+enabled = false
+cssCdn = "https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/github.min.css"
+jsCdn = "https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"
+languageCdnBase = "https://unpkg.com/@highlightjs/cdn-assets@11.11.1/languages"
+languages = ["csharp"]
+
+[plugins.shiki]
+enabled = false
+styleCdn = "https://cdn.jsdelivr.net/npm/shiki@3.0.0/style.css"
+
+[plugins.mediumzoom]
+enabled = true
+cdn = "https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"
