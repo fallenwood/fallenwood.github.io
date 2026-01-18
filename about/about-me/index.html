@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Does God Dice?</title>
+  <title>About Me</title>
   <meta name="description" content="Fallenwood&#39;s blog." />
   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -71,42 +71,16 @@
   <main class="max-w-5xl mx-auto px-4 lg:px-6 py-10 flex-grow w-full">
     
 <section class="max-w-4xl mx-auto">
-  <div class="mb-8 p-6 bg-base-100 rounded-box shadow-sm border border-base-200">
-    <div class="flex items-center gap-3">
-      <div class="p-3 bg-primary/10 text-primary rounded-xl">
-        <i class="fa-solid fa-tags text-2xl"></i>
-      </div>
-      <div>
-        <h1 class="text-2xl font-bold">Tag Archive</h1>
-        <div class="badge badge-primary badge-outline mt-1">signalr</div>
-      </div>
+  <div class="card bg-base-100 shadow-sm border border-base-200">
+    <div class="card-body p-6 lg:p-10">
+      <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-center">About Me</h1>
+      <div class="divider"></div>
+      <article class="prose prose-base lg:prose-lg max-w-none">
+        <p>Microsoft最菜的C#码农, 顺便写Python/Node.js/Java/Groovy/Kotlin/React.</p>
+
+      </article>
     </div>
   </div>
-
-  <div class="grid gap-4">
-    
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="/2022/09/02/signalr-httpcontext/" class="hover:text-primary transition-colors">SignalR中HttpContext复用的问题</a>
-          </h2>
-          
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
-              <h2 id="section">背景</h2>
-<p>使用 SignalR SSE ( <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">ServerSentEvents</a> ) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致从 Context 读取到的东西有问题.</p>
-
-            </div>
-          
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
-            2022-09-02 22:03
-          </div>
-        </div>
-      </div>
-    
-  </div>
-
-  
 </section>
 
   </main>
