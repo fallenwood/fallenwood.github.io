@@ -6,6 +6,8 @@
   <title>Does God Dice?</title>
   <meta name="description" content="Fallenwood&#39;s blog." />
   
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
   
   
   
@@ -28,14 +30,22 @@
       </div>
       <div class="navbar-center hidden lg:flex lg:ml-auto">
         <ul class="menu menu-horizontal px-1 gap-2 font-medium">
-          <li><a class="gap-2" href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i>首页</a></li>
-          <li><a class="gap-2" href="https://blog.fallenwood.net/categories/"><i class="fa-solid fa-box-archive"></i>归档</a></li>
-          <li><a class="gap-2" href="https://blog.fallenwood.net/tags/"><i class="fa-solid fa-tags"></i>标签</a></li>
-          <li><a class="gap-2" href="https://blog.fallenwood.net/atom.xml"><i class="fa-solid fa-rss"></i>RSS</a></li>
-          <li><a class="gap-2" href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i>关于</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/"><i data-lucide="house"></i>首页</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/categories/"><i data-lucide="archive"></i>归档</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/tags/"><i data-lucide="tags"></i>标签</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/atom.xml"><i data-lucide="rss"></i>RSS</a></li>
+          <li><a class="gap-2" href="https://blog.fallenwood.net/about/"><i data-lucide="user"></i>关于</a></li>
         </ul>
+        <button id="theme-toggle-desktop" class="btn btn-ghost btn-circle ml-2" aria-label="Toggle theme">
+          <i data-lucide="sun" class="text-lg theme-icon-light"></i>
+          <i data-lucide="moon" class="text-lg theme-icon-dark hidden"></i>
+        </button>
       </div>
       <div class="navbar-end lg:hidden">
+        <button id="theme-toggle-mobile" class="btn btn-ghost btn-circle mr-1" aria-label="Toggle theme">
+          <i data-lucide="sun" class="text-lg theme-icon-light"></i>
+          <i data-lucide="moon" class="text-lg theme-icon-dark hidden"></i>
+        </button>
         <button id="mobile-menu-open" class="btn btn-ghost btn-circle" aria-label="Open menu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -49,11 +59,11 @@
     <div class="max-w-5xl mx-auto px-4 lg:px-6">
       <nav class="py-4">
         <ul class="menu menu-lg w-full gap-2">
-          <li><a class="gap-3" href="https://blog.fallenwood.net/"><i class="fa-solid fa-house"></i>首页</a></li>
-          <li><a class="gap-3" href="https://blog.fallenwood.net/categories/"><i class="fa-solid fa-box-archive"></i>归档</a></li>
-          <li><a class="gap-3" href="https://blog.fallenwood.net/tags/"><i class="fa-solid fa-tags"></i>标签</a></li>
-          <li><a class="gap-3" href="https://blog.fallenwood.net/atom.xml"><i class="fa-solid fa-rss"></i>RSS</a></li>
-          <li><a class="gap-3" href="https://blog.fallenwood.net/about/"><i class="fa-solid fa-user"></i>关于</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/"><i data-lucide="house"></i>首页</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/categories/"><i data-lucide="archive"></i>归档</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/tags/"><i data-lucide="tags"></i>标签</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/atom.xml"><i data-lucide="rss"></i>RSS</a></li>
+          <li><a class="gap-3" href="https://blog.fallenwood.net/about/"><i data-lucide="user"></i>关于</a></li>
         </ul>
       </nav>
     </div>
@@ -65,7 +75,7 @@
   <div class="mb-8 p-6 bg-base-100 rounded-box shadow-sm border border-base-200">
     <div class="flex items-center gap-3">
       <div class="p-3 bg-primary/10 text-primary rounded-xl">
-        <i class="fa-solid fa-tags text-2xl"></i>
+        <i data-lucide="tags" class="w-6 h-6"></i>
       </div>
       <div>
         <h1 class="text-2xl font-bold">Tag Archive</h1>
@@ -102,9 +112,19 @@
             </div>
           
           <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i class="fa-regular fa-calendar-days"></i>
+            <i data-lucide="calendar-days" class="w-4 h-4"></i>
             2022-07-23 20:10
           </div>
+          
+            <div class="flex flex-wrap items-center gap-2 mt-3">
+              <i data-lucide="tags" class="w-4 h-4 text-base-content/60"></i>
+              
+                <a href="https://blog.fallenwood.net/tags/jaeger/" class="badge badge-sm badge-outline hover:badge-primary transition-colors">jaeger</a>
+              
+                <a href="https://blog.fallenwood.net/tags/opentelemetry/" class="badge badge-sm badge-outline hover:badge-primary transition-colors">opentelemetry</a>
+              
+            </div>
+          
         </div>
       </div>
     
@@ -124,6 +144,72 @@
   
   
   
+  
+
+  <script>
+    // Theme toggle functionality
+    (function() {
+      const STORAGE_KEY = 'toki-theme';
+      
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      
+      function getStoredTheme() {
+        return localStorage.getItem(STORAGE_KEY);
+      }
+      
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(STORAGE_KEY, theme);
+        updateIcons(theme);
+      }
+      
+      function updateIcons(theme) {
+        const lightIcons = document.querySelectorAll('.theme-icon-light');
+        const darkIcons = document.querySelectorAll('.theme-icon-dark');
+        
+        if (theme === 'dark') {
+          lightIcons.forEach(icon => icon.classList.add('hidden'));
+          darkIcons.forEach(icon => icon.classList.remove('hidden'));
+        } else {
+          lightIcons.forEach(icon => icon.classList.remove('hidden'));
+          darkIcons.forEach(icon => icon.classList.add('hidden'));
+        }
+      }
+      
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || getSystemTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      }
+      
+      // Initialize theme on page load
+      const stored = getStoredTheme();
+      const initial = stored || getSystemTheme();
+      setTheme(initial);
+      
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!getStoredTheme()) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+      
+      // Setup toggle buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        const toggleDesktop = document.getElementById('theme-toggle-desktop');
+        const toggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        if (toggleDesktop) toggleDesktop.addEventListener('click', toggleTheme);
+        if (toggleMobile) toggleMobile.addEventListener('click', toggleTheme);
+        
+        // Update icons after DOM is ready
+        const currentTheme = document.documentElement.getAttribute('data-theme') || getSystemTheme();
+        updateIcons(currentTheme);
+      });
+    })();
+  </script>
 
   <script>
     (function() {
@@ -137,5 +223,15 @@
       if (openBtn) openBtn.addEventListener('click', toggleMenu);
     })();
   </script>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+  
 </body>
 </html>
