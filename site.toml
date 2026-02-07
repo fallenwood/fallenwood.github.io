@@ -4,6 +4,11 @@ author = "Fallenwood"
 baseUrl = "https://blog.fallenwood.net/"
 theme = "themes/default"
 
+[deploy]
+remote = "origin"
+branch = "master"
+repo = "https://github.com/fallenwood/fallenwood.github.io.git"
+
 [gitalk]
 enabled = true
 clientId = "6e5d657101dda0af9dda"
@@ -12,12 +17,18 @@ repo = "fallenwood.github.io"
 owner = "fallenwood"
 admin = ["fallenwood"]
 
-[nav]
+[i18n]
 home = "首页"
 archive = "归档"
 tags = "标签"
+categories = "分类"
 rss = "RSS"
 about = "关于"
+tagPrefix = "标签"
+categoryPrefix = "分类"
+previous = "上一页"
+next = "下一页"
+pagePrefix = "第"
 
 [date]
 format = "yyyy-MM-dd HH:mm"
@@ -38,12 +49,12 @@ poweredBy = "Toki"
 enabled = true
 cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
 
-[plugins.fontawesome]
+[plugins.lucide]
 enabled = true
-cdn = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+cdn = "https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"
 
 [plugins.prismjs]
-enabled = true
+enabled = false
 cssCdn = "https://unpkg.com/prismjs@1.30.0/themes/prism-solarizedlight.min.css"
 jsCdn = "https://unpkg.com/prismjs@1.30.0/components/prism-core.min.js"
 autoloaderEnabled = true
@@ -60,6 +71,17 @@ languages = ["csharp"]
 enabled = false
 styleCdn = "https://cdn.jsdelivr.net/npm/shiki@3.0.0/style.css"
 
+[plugins.arborium]
+enabled = true
+cssCdn = "https://cdn.jsdelivr.net/npm/@arborium/arborium@2/dist/themes/github-dark.css"
+jsCdn = "https://cdn.jsdelivr.net/npm/@arborium/arborium@2/dist/arborium.iife.js"
+
 [plugins.mediumzoom]
 enabled = true
 cdn = "https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"
+
+[plugins.dayjs]
+enabled = true
+cdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"
+localeCdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/locale/zh-cn.js"
+relativeTimeCdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/plugin/relativeTime.js"

@@ -5,10 +5,10 @@
   <!-- Mobile TOC Toggle and Scroll to Top (Fixed) -->
   <div class="fixed right-6 bottom-8 z-50 flex flex-col gap-2">
     <button id="mobile-toc-toggle" class="btn btn-circle shadow-lg lg:hidden bg-base-100 border border-base-200" aria-label="Toggle TOC">
-      <i class="fa-solid fa-list-ul"></i>
+      <i data-lucide="list" class="w-5 h-5"></i>
     </button>
     <button id="go-top" class="btn btn-circle shadow-lg bg-base-100 border border-base-200 hidden" aria-label="Go to top">
-      <i class="fa-solid fa-arrow-up"></i>
+      <i data-lucide="arrow-up" class="w-5 h-5"></i>
     </button>
   </div>
 
@@ -20,12 +20,16 @@
           <h1 class="text-3xl lg:text-4xl font-bold mb-4 leading-tight">{{ post.title }}</h1>
           <div class="flex flex-wrap items-center gap-4 text-sm text-base-content/60">
             <span class="flex items-center gap-2">
-              <i class="fa-regular fa-calendar"></i>
-              {{ post.date }}{% if post.dateRelative %} ({{ post.dateRelative }}){% endif %}
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+              {% if site.plugins and site.plugins.dayjs and site.plugins.dayjs.enabled %}
+                <time data-date="{{ post.dateIso }}" data-format="{{ site.date.format }}">{{ post.date }}</time>{% if post.dateRelative %} (<time data-date="{{ post.dateIso }}" data-relative="true">{{ post.dateRelative }}</time>){% endif %}
+              {% else %}
+                {{ post.date }}{% if post.dateRelative %} ({{ post.dateRelative }}){% endif %}
+              {% endif %}
             </span>
             {% if post.categories %}
               <span class="flex items-center gap-2">
-                <i class="fa-regular fa-folder"></i>
+                <i data-lucide="folder" class="w-4 h-4"></i>
                 {% for cat in post.categories %}
                   <a href="{{ site.baseUrl }}categories/{{ cat }}/" class="link link-hover">{{ cat }}</a>
                 {% endfor %}
@@ -37,6 +41,15 @@
         <div id="post-content" class="prose prose-base lg:prose-lg max-w-none">
           {{ post.content | safe }}
         </div>
+
+        {% if post.tags %}
+          <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-base-200">
+            <i data-lucide="tags" class="w-4 h-4 text-base-content/60"></i>
+            {% for tag in post.tags %}
+              <a href="{{ site.baseUrl }}tags/{{ tag }}/" class="badge badge-outline hover:badge-primary transition-colors">{{ tag }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </article>
 
@@ -78,9 +91,9 @@
               </div>
               <div class="divider my-2"></div>
               <ul class="menu menu-sm p-0 rounded-box">
-                <li><a href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i> About</a></li>
-                <li><a href="{{ site.baseUrl }}atom.xml"><i class="fa-solid fa-rss"></i> RSS</a></li>
+                <li><a href="{{ site.baseUrl }}"><i data-lucide="house" class="w-4 h-4"></i> Home</a></li>
+                <li><a href="{{ site.baseUrl }}about/"><i data-lucide="user" class="w-4 h-4"></i> About</a></li>
+                <li><a href="{{ site.baseUrl }}atom.xml"><i data-lucide="rss" class="w-4 h-4"></i> RSS</a></li>
               </ul>
             </div>
           </div>
@@ -97,7 +110,7 @@
     <div class="flex items-center justify-between mb-4">
       <h3 class="font-bold text-lg">Menu</h3>
       <button id="toc-close" class="btn btn-circle btn-ghost btn-sm">
-        <i class="fa-solid fa-xmark"></i>
+        <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
@@ -119,10 +132,10 @@
       </div>
       <div class="divider my-2"></div>
       <ul class="menu menu-sm p-0 rounded-box">
-          <li><a href="{{ site.baseUrl }}"><i class="fa-solid fa-house"></i> Home</a></li>
-          <li><a href="{{ site.baseUrl }}categories/"><i class="fa-solid fa-box-archive"></i> Archives</a></li>
-          <li><a href="{{ site.baseUrl }}tags/"><i class="fa-solid fa-tags"></i> Tags</a></li>
-          <li><a href="{{ site.baseUrl }}about/"><i class="fa-solid fa-user"></i> About</a></li>
+          <li><a href="{{ site.baseUrl }}"><i data-lucide="house" class="w-4 h-4"></i> Home</a></li>
+          <li><a href="{{ site.baseUrl }}categories/"><i data-lucide="archive" class="w-4 h-4"></i> Archives</a></li>
+          <li><a href="{{ site.baseUrl }}tags/"><i data-lucide="tags" class="w-4 h-4"></i> Tags</a></li>
+          <li><a href="{{ site.baseUrl }}about/"><i data-lucide="user" class="w-4 h-4"></i> About</a></li>
       </ul>
     </div>
   </div>

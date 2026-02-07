@@ -16,10 +16,22 @@
           {% endif %}
           <div class="flex items-center gap-4 text-sm text-base-content/60 mt-1">
             <span class="inline-flex items-center gap-1.5">
-              <i class="fa-regular fa-calendar-days"></i>
-              {{ post.date }}{% if post.dateRelative %} · {{ post.dateRelative }}{% endif %}
+              <i data-lucide="calendar-days" class="w-4 h-4"></i>
+              {% if site.plugins and site.plugins.dayjs and site.plugins.dayjs.enabled %}
+                <time data-date="{{ post.dateIso }}" data-format="{{ site.date.format }}">{{ post.date }}</time>{% if post.dateRelative %} · <time data-date="{{ post.dateIso }}" data-relative="true">{{ post.dateRelative }}</time>{% endif %}
+              {% else %}
+                {{ post.date }}{% if post.dateRelative %} · {{ post.dateRelative }}{% endif %}
+              {% endif %}
             </span>
           </div>
+          {% if post.tags %}
+            <div class="flex flex-wrap items-center gap-2 mt-3">
+              <i data-lucide="tags" class="w-4 h-4 text-base-content/60"></i>
+              {% for tag in post.tags %}
+                <a href="{{ site.baseUrl }}tags/{{ tag }}/" class="badge badge-sm badge-outline hover:badge-primary transition-colors">{{ tag }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
@@ -30,7 +42,7 @@
       <div class="join shadow-sm">
         {% if pagination.prevUrl %}
           <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.prevUrl }}">
-            <i class="fa-solid fa-chevron-left"></i>
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </a>
         {% endif %}
 
@@ -44,7 +56,7 @@
 
         {% if pagination.nextUrl %}
           <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.nextUrl }}">
-            <i class="fa-solid fa-chevron-right"></i>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </a>
         {% endif %}
       </div>
