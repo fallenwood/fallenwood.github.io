@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="flex flex-col gap-6 max-w-3xl mx-auto" id="search-page" data-search-page>
+  <header class="flex flex-col gap-2">
+    <div class="flex items-center gap-3">
+      <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+        <i data-lucide="search" class="w-5 h-5"></i>
+      </div>
+      <h1 class="text-2xl font-bold tracking-tight">Search</h1>
+    </div>
+    <p class="text-sm text-base-content/50 ml-12">Find posts and pages by keyword.</p>
+  </header>
+  <div class="form-control w-full">
+    <label class="input input-bordered flex items-center gap-2" for="search-input-page">
+      <i data-lucide="search" class="w-4 h-4 opacity-40"></i>
+      <input id="search-input-page" type="search" placeholder="Type to search…" class="grow bg-transparent" autocomplete="off" />
+    </label>
+  </div>
+  <div id="search-results-summary" class="text-sm text-base-content/50 hidden"></div>
+  <div id="search-results-page" class="grid gap-4" aria-live="polite"></div>
+</section>
+{% endblock %}

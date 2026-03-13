@@ -2,20 +2,20 @@
 
 {% block content %}
 <section class="max-w-4xl mx-auto">
-  <div class="card bg-base-100 shadow-sm border border-base-200">
-    <div class="card-body p-8">
+  <div class="card bg-base-100 shadow-sm border border-base-300/50">
+    <div class="card-body p-6 lg:p-8">
       <div class="flex items-center gap-3 mb-6">
-        <div class="p-3 bg-primary/10 text-primary rounded-xl">
-           <i data-lucide="tags" class="w-6 h-6"></i>
+        <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+           <i data-lucide="tags" class="w-5 h-5"></i>
         </div>
-        <h1 class="text-3xl font-bold">{{ site.i18n.tags }}</h1>
+        <h1 class="text-2xl font-bold tracking-tight">{{ site.i18n.tags }}</h1>
       </div>
 
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-2">
         {% for tag in tags %}
-          <a class="btn btn-outline border-base-300 hover:border-primary hover:bg-primary hover:text-primary-content normal-case" href="{{ tag.url }}">
+          <a class="badge badge-lg badge-outline border-base-300 hover:border-primary hover:bg-primary hover:text-primary-content transition-colors cursor-pointer gap-2 py-3" href="{{ tag.url }}">
              {{ tag.name }}
-             <div class="badge badge-secondary badge-sm">{{ tag.count }}</div>
+             <span class="badge badge-sm badge-primary">{{ tag.count }}</span>
           </a>
         {% endfor %}
       </div>

@@ -2,58 +2,61 @@
 
 {% block content %}
 <section class="max-w-4xl mx-auto">
-  <div class="mb-8 p-6 bg-base-100 rounded-box shadow-sm border border-base-200">
+  <div class="mb-6 p-5 bg-base-100 rounded-box shadow-sm border border-base-300/50">
     <div class="flex items-center gap-3">
-      <div class="p-3 bg-primary/10 text-primary rounded-xl">
-        <i data-lucide="archive" class="w-6 h-6"></i>
+      <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+        <i data-lucide="folder" class="w-5 h-5"></i>
       </div>
       <div>
-        <h1 class="text-2xl font-bold">Category Archive</h1>
-        <p class="text-base-content/60">{{ category }}</p>
+        <h1 class="text-xl font-bold tracking-tight">Category Archive</h1>
+        <span class="text-sm text-base-content/50">{{ category }}</span>
       </div>
     </div>
   </div>
 
   <div class="grid gap-4">
     {% for post in posts %}
-      <div class="card card-compact bg-base-100 shadow-sm border border-base-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-        <div class="card-body">
-          <h2 class="card-title text-xl">
-            <a href="{{ post.url }}" class="hover:text-primary transition-colors">{{ post.title }}</a>
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='{{ post.url }}'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='{{ post.url }}'">
+        <div class="card-body gap-2">
+          <h2 class="card-title text-lg">
+            <a href="{{ post.url }}" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">{{ post.title }}</a>
           </h2>
           {% if post.excerpt %}
-            <div class="prose prose-sm text-base-content/80 my-2 line-clamp-3">
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
               {{ post.excerpt | safe }}
             </div>
           {% endif %}
-          <div class="flex items-center gap-2 text-sm text-base-content/60 mt-2">
-            <i data-lucide="calendar-days" class="w-4 h-4"></i>
+          <div class="flex items-center gap-2 text-sm text-base-content/50 mt-1">
+            <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
             {{ post.date }}{% if post.dateRelative %} · {{ post.dateRelative }}{% endif %}
           </div>
         </div>
-      </div>
+      </article>
     {% endfor %}
   </div>
 
   {% if pagination and pagination.total > 1 %}
     <div class="flex justify-center mt-12">
-      <div class="join shadow-sm">
+      <div class="join">
         {% if pagination.prevUrl %}
-          <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.prevUrl }}">
+          <a class="join-item btn btn-sm bg-base-100 border-base-300/50 hover:bg-base-200" href="{{ pagination.prevUrl }}">
             <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </a>
         {% endif %}
-        
+
         {% for item in pagination.items %}
           {% if item.isEllipsis %}
-            <span class="join-item btn btn-md bg-base-100 border-base-200 btn-disabled">...</span>
+            <span class="join-item btn btn-sm bg-base-100 border-base-300/50 btn-disabled">…</span>
           {% else %}
-            <a class="join-item btn btn-md border-base-200 {% if item.isCurrent %}btn-primary text-primary-content{% else %}bg-base-100 hover:bg-base-200{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
+            <a class="join-item btn btn-sm border-base-300/50 {% if item.isCurrent %}btn-primary text-primary-content{% else %}bg-base-100 hover:bg-base-200{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
           {% endif %}
         {% endfor %}
 
         {% if pagination.nextUrl %}
-          <a class="join-item btn btn-md bg-base-100 border-base-200 hover:bg-base-200" href="{{ pagination.nextUrl }}">
+          <a class="join-item btn btn-sm bg-base-100 border-base-300/50 hover:bg-base-200" href="{{ pagination.nextUrl }}">
             <i data-lucide="chevron-right" class="w-4 h-4"></i>
           </a>
         {% endif %}

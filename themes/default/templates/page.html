@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="max-w-4xl mx-auto">
-  <div class="card bg-base-100 shadow-sm border border-base-200">
+<section class="max-w-3xl mx-auto">
+  <div class="card bg-base-100 shadow-sm border border-base-300/50">
     <div class="card-body p-6 lg:p-10">
-      <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-center">{{ page.title }}</h1>
-      <div class="divider"></div>
+      <h1 class="text-3xl lg:text-4xl font-bold mb-2 tracking-tight">{{ page.title }}</h1>
+      <div class="divider mt-2 mb-6"></div>
       <article class="prose prose-base lg:prose-lg max-w-none">
         {{ page.content | safe }}
       </article>

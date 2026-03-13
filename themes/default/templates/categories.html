@@ -2,21 +2,34 @@
 
 {% block content %}
 <section class="max-w-4xl mx-auto">
-  <div class="card bg-base-100 shadow-sm border border-base-200">
-    <div class="card-body p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="p-3 bg-primary/10 text-primary rounded-xl">
-           <i data-lucide="folder-open" class="w-6 h-6"></i>
+  <div class="card bg-base-100 shadow-sm border border-base-300/50">
+    <div class="card-body p-6 lg:p-8">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+            <i data-lucide="archive" class="w-5 h-5"></i>
+          </div>
+          <h1 class="text-2xl font-bold tracking-tight">{{ site.i18n.categories }}</h1>
         </div>
-        <h1 class="text-3xl font-bold">{{ site.i18n.categories }}</h1>
+        <span class="text-sm text-base-content/50">{{ totalPosts }} posts</span>
       </div>
 
-      <div class="flex flex-wrap gap-3">
-        {% for category in categories %}
-          <a class="btn btn-outline border-base-300 hover:border-primary hover:bg-primary hover:text-primary-content normal-case" href="{{ category.url }}">
-             {{ category.name }}
-             <div class="badge badge-secondary badge-sm">{{ category.count }}</div>
-          </a>
+      <div class="space-y-10">
+        {% for archive in archives %}
+          <div>
+            <div class="flex items-baseline gap-3 mb-4">
+              <h2 class="text-3xl font-bold tracking-tight text-primary/80">{{ archive.year }}</h2>
+              <span class="badge badge-sm badge-ghost">{{ archive.count }}</span>
+            </div>
+            <div class="space-y-1 ml-1 border-l-2 border-base-300/60 pl-5">
+              {% for post in archive.posts %}
+                <div class="flex items-baseline gap-4 py-1.5 group">
+                  <span class="text-xs font-mono text-base-content/40 w-10 shrink-0">{{ post.monthDay }}</span>
+                  <a href="{{ post.url }}" class="text-base group-hover:text-primary transition-colors leading-snug">{{ post.title }}</a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
         {% endfor %}
       </div>
     </div>

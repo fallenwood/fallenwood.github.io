@@ -4,36 +4,42 @@
 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
   <!-- Mobile TOC Toggle and Scroll to Top (Fixed) -->
   <div class="fixed right-6 bottom-8 z-50 flex flex-col gap-2">
-    <button id="mobile-toc-toggle" class="btn btn-circle shadow-lg lg:hidden bg-base-100 border border-base-200" aria-label="Toggle TOC">
-      <i data-lucide="list" class="w-5 h-5"></i>
+    <button id="mobile-toc-toggle" class="btn btn-circle btn-sm shadow-lg lg:hidden bg-base-100 border border-base-300/50"
+      aria-label="Toggle TOC">
+      <i data-lucide="list" class="w-4 h-4"></i>
     </button>
-    <button id="go-top" class="btn btn-circle shadow-lg bg-base-100 border border-base-200 hidden" aria-label="Go to top">
-      <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    <button id="go-top" class="btn btn-circle btn-sm shadow-lg bg-base-100 border border-base-300/50 hidden"
+      aria-label="Go to top">
+      <i data-lucide="arrow-up" class="w-4 h-4"></i>
     </button>
   </div>
 
   <!-- Main Content -->
   <main class="lg:col-span-3 min-w-0">
-    <article class="card bg-base-100 shadow-sm border border-base-200">
+    <article class="card bg-base-100 shadow-sm border border-base-300/50">
       <div class="card-body p-6 lg:p-10">
-        <header class="mb-8 border-b border-base-200 pb-8">
-          <h1 class="text-3xl lg:text-4xl font-bold mb-4 leading-tight">{{ post.title }}</h1>
-          <div class="flex flex-wrap items-center gap-4 text-sm text-base-content/60">
+        <header class="mb-8 pb-8 border-b border-base-300/50">
+          <div class="post-header-accent -mx-6 -mt-6 lg:-mx-10 lg:-mt-10 px-6 pt-8 pb-6 lg:px-10 lg:pt-10 lg:pb-8 mb-6 rounded-t-2xl">
+            <h1 class="text-3xl lg:text-4xl font-bold leading-tight tracking-tight">{{ post.title }}</h1>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-base-content/50">
             <span class="flex items-center gap-2">
               <i data-lucide="calendar" class="w-4 h-4"></i>
               {% if site.plugins and site.plugins.dayjs and site.plugins.dayjs.enabled %}
-                <time data-date="{{ post.dateIso }}" data-format="{{ site.date.format }}">{{ post.date }}</time>{% if post.dateRelative %} (<time data-date="{{ post.dateIso }}" data-relative="true">{{ post.dateRelative }}</time>){% endif %}
+              <time data-date="{{ post.dateIso }}" data-format="{{ site.date.format }}">{{ post.date }}</time>{% if
+              post.dateRelative %} (<time data-date="{{ post.dateIso }}" data-relative="true">{{ post.dateRelative
+                }}</time>){% endif %}
               {% else %}
-                {{ post.date }}{% if post.dateRelative %} ({{ post.dateRelative }}){% endif %}
+              {{ post.date }}{% if post.dateRelative %} ({{ post.dateRelative }}){% endif %}
               {% endif %}
             </span>
             {% if post.categories %}
-              <span class="flex items-center gap-2">
-                <i data-lucide="folder" class="w-4 h-4"></i>
-                {% for cat in post.categories %}
-                  <a href="{{ site.baseUrl }}categories/{{ cat }}/" class="link link-hover">{{ cat }}</a>
-                {% endfor %}
-              </span>
+            <span class="flex items-center gap-2">
+              <i data-lucide="folder" class="w-4 h-4"></i>
+              {% for cat in post.categories %}
+              <a href="{{ site.baseUrl }}categories/{{ cat }}/" class="link link-hover hover:text-primary">{{ cat }}</a>
+              {% endfor %}
+            </span>
             {% endif %}
           </div>
         </header>
@@ -43,124 +49,136 @@
         </div>
 
         {% if post.tags %}
-          <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-base-200">
-            <i data-lucide="tags" class="w-4 h-4 text-base-content/60"></i>
-            {% for tag in post.tags %}
-              <a href="{{ site.baseUrl }}tags/{{ tag }}/" class="badge badge-outline hover:badge-primary transition-colors">{{ tag }}</a>
-            {% endfor %}
-          </div>
+        <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-base-300/50">
+          <i data-lucide="tags" class="w-4 h-4 text-base-content/40"></i>
+          {% for tag in post.tags %}
+          <a href="{{ site.baseUrl }}tags/{{ tag }}/"
+            class="badge badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer">{{ tag }}</a>
+          {% endfor %}
+        </div>
         {% endif %}
       </div>
     </article>
 
     <!-- Comments -->
     {% if site.gitalk and site.gitalk.enabled %}
-      <div class="card bg-base-100 shadow-sm border border-base-200 mt-8">
-        <div class="card-body p-6 lg:p-10">
-          <h2 class="text-xl font-bold mb-4">Comments</h2>
-          <div id="gitalk-container"></div>
-        </div>
+    <div class="card bg-base-100 shadow-sm border border-base-300/50 mt-8">
+      <div class="card-body p-6 lg:p-10">
+        <h2 class="text-xl font-bold mb-4">Comments</h2>
+        <div id="gitalk-container"></div>
       </div>
+    </div>
     {% endif %}
   </main>
 
   <!-- Sidebar (Desktop) -->
   {% if site.sidebar and site.sidebar.show %}
-    <aside class="hidden lg:block lg:col-span-1">
-      <div class="sticky top-24">
-        <div class="card bg-base-100 shadow-sm border border-base-200 max-h-[calc(100vh-8rem)] overflow-auto">
-          <div class="card-body p-5">
-            <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
-              <a role="tab" class="tab tab-active" data-tab-target="toc-desktop">Contents</a>
-              <a role="tab" class="tab" data-tab-target="overview-desktop">Overview</a>
-            </div>
+  <aside class="hidden lg:block lg:col-span-1">
+    <div class="sticky top-24">
+      <div class="flex flex-col items-center text-center gap-3 mb-4">
+        {% if site.avatarLink %}
+        <div class="avatar">
+          <div class="w-16 h-16 rounded-full ring ring-primary/10 ring-offset-base-100 ring-offset-2 overflow-hidden">
+            <img src="{{ site.avatarLink }}" alt="{{ site.author if site.author else site.title }}" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        {% endif %}
+        <div>
+          <h3 class="font-semibold text-base">{{ site.author if site.author else site.title }}</h3>
+          <p class="text-xs text-base-content/50 mt-1 leading-relaxed">{{ site.description }}</p>
+        </div>
+      </div>
+      <div class="card bg-base-100 shadow-sm border border-base-300/50 max-h-[calc(100vh-14rem)] overflow-auto">
+        <div class="card-body p-4" data-tab-group>
+          <div role="tablist" class="tabs tabs-border tabs-sm w-full mb-3 grid grid-cols-2">
+            <button type="button" role="tab" class="tab tab-active" data-tab-target="toc-desktop">ToC</button>
+            <button type="button" role="tab" class="tab" data-tab-target="overview-desktop">Overview</button>
+          </div>
 
-            <!-- TOC Tab -->
-            <div id="toc-desktop" class="tab-content block">
-              <nav>
-                <ol id="toc-list" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
-                <div id="toc-empty" class="text-sm text-base-content/50 italic hidden">No table of contents</div>
-              </nav>
-            </div>
+          <!-- TOC Tab -->
+          <div id="toc-desktop" class="tab-content block">
+            <nav>
+              <ol id="toc-list" class="menu menu-xs p-0 [&_li_a]:rounded-md"></ol>
+              <div id="toc-empty" class="text-xs text-base-content/40 italic hidden">No headings found</div>
+            </nav>
+          </div>
 
-            <!-- Overview Tab -->
-            <div id="overview-desktop" class="tab-content hidden space-y-4">
-              <div>
-                <h3 class="font-bold text-lg">{{ site.title }}</h3>
-                <p class="text-sm text-base-content/70 mt-1">{{ site.description }}</p>
-              </div>
-              <div class="divider my-2"></div>
-              <ul class="menu menu-sm p-0 rounded-box">
-                <li><a href="{{ site.baseUrl }}"><i data-lucide="house" class="w-4 h-4"></i> Home</a></li>
-                <li><a href="{{ site.baseUrl }}about/"><i data-lucide="user" class="w-4 h-4"></i> About</a></li>
-                <li><a href="{{ site.baseUrl }}atom.xml"><i data-lucide="rss" class="w-4 h-4"></i> RSS</a></li>
-              </ul>
-            </div>
+          <!-- Overview Tab -->
+          <div id="overview-desktop" class="tab-content hidden space-y-3">
+            <ul class="menu menu-xs p-0 rounded-box">
+              <li><a href="{{ site.baseUrl }}" class="gap-2"><i data-lucide="house" class="w-3.5 h-3.5"></i> Home</a></li>
+              <li><a href="{{ site.baseUrl }}about/" class="gap-2"><i data-lucide="user" class="w-3.5 h-3.5"></i> About</a></li>
+              <li><a href="{{ site.baseUrl }}atom.xml" class="gap-2"><i data-lucide="rss" class="w-3.5 h-3.5"></i> RSS</a></li>
+            </ul>
           </div>
         </div>
       </div>
-    </aside>
+    </div>
+  </aside>
   {% endif %}
 </div>
 
 <!-- Mobile Drawer for TOC -->
 <div id="toc-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
-  <div class="absolute inset-0 bg-black/50" id="toc-backdrop"></div>
-  <div class="absolute right-0 top-0 h-full w-80 bg-base-100 shadow-2xl p-6 overflow-y-auto">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="font-bold text-lg">Menu</h3>
-      <button id="toc-close" class="btn btn-circle btn-ghost btn-sm">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" id="toc-backdrop"></div>
+  <div class="absolute right-0 top-0 h-full w-80 bg-base-100 shadow-2xl p-6 overflow-y-auto" data-tab-group>
+    <div class="flex flex-col items-center text-center gap-3">
+      {% if site.avatarLink %}
+      <div class="avatar">
+        <div class="w-14 h-14 rounded-full ring ring-primary/10 ring-offset-base-100 ring-offset-2 overflow-hidden">
+          <img src="{{ site.avatarLink }}" alt="{{ site.author if site.author else site.title }}" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      {% endif %}
+      <div>
+        <h3 class="font-semibold text-base">{{ site.author if site.author else site.title }}</h3>
+        <p class="text-xs text-base-content/50 mt-1">{{ site.description }}</p>
+      </div>
     </div>
+    <div class="divider my-3"></div>
 
-    <div role="tablist" class="tabs tabs-bordered w-full mb-4 grid grid-cols-2">
-      <a role="tab" class="tab tab-active" data-tab-target="toc-mobile">Contents</a>
-      <a role="tab" class="tab" data-tab-target="overview-mobile">Overview</a>
+    <div role="tablist" class="tabs tabs-border tabs-sm w-full mb-3 grid grid-cols-2">
+      <button type="button" role="tab" class="tab tab-active" data-tab-target="toc-mobile">ToC</button>
+      <button type="button" role="tab" class="tab" data-tab-target="overview-mobile">Overview</button>
     </div>
 
     <!-- TOC Tab Mobile -->
     <div id="toc-mobile" class="tab-content block">
-       <ol id="toc-list-drawer" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
+      <ol id="toc-list-drawer" class="menu menu-sm p-0 [&_li_a]:rounded-md"></ol>
     </div>
 
     <!-- Overview Tab Mobile -->
-    <div id="overview-mobile" class="tab-content hidden space-y-4">
-      <div>
-        <h3 class="font-bold text-lg">{{ site.title }}</h3>
-        <p class="text-sm text-base-content/70 mt-1">{{ site.description }}</p>
-      </div>
-      <div class="divider my-2"></div>
+    <div id="overview-mobile" class="tab-content hidden space-y-3">
       <ul class="menu menu-sm p-0 rounded-box">
-          <li><a href="{{ site.baseUrl }}"><i data-lucide="house" class="w-4 h-4"></i> Home</a></li>
-          <li><a href="{{ site.baseUrl }}categories/"><i data-lucide="archive" class="w-4 h-4"></i> Archives</a></li>
-          <li><a href="{{ site.baseUrl }}tags/"><i data-lucide="tags" class="w-4 h-4"></i> Tags</a></li>
-          <li><a href="{{ site.baseUrl }}about/"><i data-lucide="user" class="w-4 h-4"></i> About</a></li>
+        <li><a href="{{ site.baseUrl }}" class="gap-2"><i data-lucide="house" class="w-4 h-4"></i> Home</a></li>
+        <li><a href="{{ site.baseUrl }}categories/" class="gap-2"><i data-lucide="archive" class="w-4 h-4"></i> Archives</a></li>
+        <li><a href="{{ site.baseUrl }}tags/" class="gap-2"><i data-lucide="tags" class="w-4 h-4"></i> Tags</a></li>
+        <li><a href="{{ site.baseUrl }}about/" class="gap-2"><i data-lucide="user" class="w-4 h-4"></i> About</a></li>
       </ul>
     </div>
   </div>
 </div>
 
 {% if site.gitalk and site.gitalk.enabled %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-  <script>
-    const gitalk = new Gitalk({
-      clientID: "{{ site.gitalk.clientId }}",
-      clientSecret: "{{ site.gitalk.clientSecret }}",
-      repo: "{{ site.gitalk.repo }}",
-      owner: "{{ site.gitalk.owner }}",
-      admin: {{ site.gitalk.admin | tojson | safe }},
-      id: "{{ post.hash }}",
-      language: "",
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" />
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: "{{ site.gitalk.clientId }}",
+    clientSecret: "{{ site.gitalk.clientSecret }}",
+    repo: "{{ site.gitalk.repo }}",
+    owner: "{{ site.gitalk.owner }}",
+    admin: {{ site.gitalk.admin | tojson | safe }},
+  id: "{{ post.hash }}",
+    language: "",
       distractionFreeMode: true,
     });
-    gitalk.render("gitalk-container");
-  </script>
+  gitalk.render("gitalk-container");
+</script>
 {% endif %}
 
 <script>
-  (function() {
+  (function () {
     // Top Button Visibility
     const topBtn = document.getElementById('go-top');
     if (topBtn) {
@@ -185,50 +203,22 @@
     if (content && tocList) {
       const headings = Array.from(content.querySelectorAll('h2, h3'));
       if (headings.length === 0) {
-        // Hide TOC tab and switch to Overview if no headings
-        const groups = [
-          { tab: '[data-tab-target="toc-desktop"]', overview: '[data-tab-target="overview-desktop"]', contentId: 'toc-desktop', overviewId: 'overview-desktop' },
-          { tab: '[data-tab-target="toc-mobile"]', overview: '[data-tab-target="overview-mobile"]', contentId: 'toc-mobile', overviewId: 'overview-mobile' }
-        ];
-
-        groups.forEach(g => {
-          const tocTab = document.querySelector(g.tab);
-          const overviewTab = document.querySelector(g.overview);
-          const tocContent = document.getElementById(g.contentId);
-          const overviewContent = document.getElementById(g.overviewId);
-
-          if (tocTab && overviewTab && tocContent && overviewContent) {
-            tocTab.classList.add('hidden');
-            if (tocTab.parentElement) {
-              tocTab.parentElement.classList.remove('grid-cols-2');
-              tocTab.parentElement.classList.add('grid-cols-1');
-            }
-            tocTab.classList.remove('tab-active');
-            overviewTab.classList.add('tab-active');
-            
-            tocContent.classList.remove('block');
-            tocContent.classList.add('hidden');
-            overviewContent.classList.remove('hidden');
-            overviewContent.classList.add('block');
-          }
-        });
-
         if (tocEmpty) tocEmpty.classList.remove('hidden');
       } else {
         const slugify = (text) => text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-        
+
         headings.forEach(heading => {
-            if (!heading.id) heading.id = slugify(heading.textContent);
-            
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#' + heading.id;
-            a.textContent = heading.textContent;
-            a.className = heading.tagName === 'H3' ? 'pl-6 text-sm opacity-90' : 'font-medium';
-            
-            li.appendChild(a);
-            tocList.appendChild(li);
-            if (tocListDrawer) tocListDrawer.appendChild(li.cloneNode(true));
+          if (!heading.id) heading.id = slugify(heading.textContent);
+
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + heading.id;
+          a.textContent = heading.textContent;
+          a.className = heading.tagName === 'H3' ? 'pl-6 text-sm opacity-90' : 'font-medium';
+
+          li.appendChild(a);
+          tocList.appendChild(li);
+          if (tocListDrawer) tocListDrawer.appendChild(li.cloneNode(true));
         });
       }
     }
@@ -242,49 +232,34 @@
     if (drawer && toggleBtn) {
       toggleBtn.addEventListener('click', () => drawer.classList.remove('translate-x-full'));
       const closeDrawer = () => drawer.classList.add('translate-x-full');
-      
+
       if (backdrop) backdrop.addEventListener('click', closeDrawer);
       if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
     }
 
     // Toggle Tabs
-    const setupTabs = (containerSelector) => {
-        const tabs = document.querySelectorAll(`${containerSelector} [data-tab-target]`);
-        if (!tabs.length) return;
+    const tabGroups = document.querySelectorAll('[data-tab-group]');
+    tabGroups.forEach(group => {
+      const tabs = group.querySelectorAll('[data-tab-target]');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('tab-active'));
+          group.querySelectorAll('.tab-content').forEach(c => {
+            c.classList.add('hidden');
+            c.classList.remove('block');
+          });
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Find parent container (card-body or sidebar div)
-                const parent = tab.closest('.card-body, .p-6');
-                if(!parent) return;
-
-                // Deactivate all tabs in this container
-                parent.querySelectorAll('[data-tab-target]').forEach(t => t.classList.remove('tab-active'));
-                
-                // Hide all contents in this container
-                parent.querySelectorAll('.tab-content').forEach(c => {
-                    c.classList.add('hidden');
-                    c.classList.remove('block');
-                });
-
-                // Activate clicked tab
-                tab.classList.add('tab-active');
-                
-                // Show target content
-                const targetId = tab.getAttribute('data-tab-target');
-                const target = document.getElementById(targetId);
-                if (target) {
-                    target.classList.remove('hidden');
-                    target.classList.add('block');
-                }
-            });
+          tab.classList.add('tab-active');
+          const targetId = tab.getAttribute('data-tab-target');
+          const target = targetId ? document.getElementById(targetId) : null;
+          if (target) {
+            target.classList.remove('hidden');
+            target.classList.add('block');
+          }
         });
-    }
-
-    setupTabs('.sticky'); // Desktop Sidebar
-    setupTabs('#toc-drawer'); // Mobile Drawer
+      });
+    });
 
   })();
 </script>
-{% endblock %}
 {% endblock %}
