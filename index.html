@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Does God Dice?</title>
+  <meta name="description" content="Fallenwood&#39;s blog." />
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  
+  
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@arborium/arborium@2/dist/themes/github-dark.css" />
+  
+
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/@arborium/arborium@2/dist/arborium.iife.js"></script>
+  
+
+  
+  <link rel="stylesheet" href="/assets/main.css" />
+  <script defer src="/assets/main.js" id="toki-main-script"></script>
+  <script>
+    // Fallback: if main.js fails (e.g., baseUrl mismatch), attempt dynamic import from current origin
+    window.addEventListener('error', function onScriptError(e) {
+      if (e.target && e.target.id === 'toki-main-script') {
+        console.warn('[toki] main.js failed to load, retrying via dynamic import');
+        import('/assets/main.js').catch(err => console.error('[toki] dynamic import failed', err));
+      }
+    }, true);
+  </script>
+
+  <link rel="stylesheet" href="/assets/custom.css" />
+  
+</head>
+<body class="bg-base-200 text-base-content min-h-screen flex flex-col font-sans antialiased"
+  data-base-url="https://blog.fallenwood.net/"
+  data-search-enabled="true"
+  data-search-provider="minisearch"
+  data-search-index="search-index.json"
+  data-search-min-chars="2"
+  data-search-limit="12"
+  data-search-fuzzy="0.2"
+>
+
+  <header class="sticky top-0 z-50 bg-base-100/80 backdrop-blur-lg border-b border-base-300/50">
+    <nav class="navbar max-w-5xl mx-auto px-4 lg:px-6">
+      <div class="navbar-start">
+        <a class="group flex items-center gap-2 px-0 hover:opacity-80 transition-opacity" href="https://blog.fallenwood.net/">
+          <span class="font-bold tracking-tight text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Does God Dice?</span>
+        </a>
+      </div>
+      <div class="navbar-center hidden lg:flex lg:ml-auto items-center gap-2">
+        <div class="dropdown dropdown-end w-64" id="search-dropdown" data-search-root>
+          <label class="input input-sm input-bordered flex items-center gap-2 w-full bg-base-200/50" for="search-input-desktop">
+            <i data-lucide="search" class="w-3.5 h-3.5 opacity-50"></i>
+            <input id="search-input-desktop" type="search" placeholder="Search…" class="grow bg-transparent focus:outline-none text-sm" autocomplete="off" />
+            <kbd class="kbd kbd-xs text-base-content/40">/</kbd>
+          </label>
+          <div class="dropdown-content z-[60] mt-2 w-full shadow-xl bg-base-100 rounded-box border border-base-200 hidden" id="search-results-panel">
+            <ul class="menu menu-sm max-h-96 overflow-y-auto" id="search-results-list"></ul>
+            <div class="divider my-0"></div>
+            <a id="search-view-all" class="btn btn-ghost btn-sm justify-start" href="https://blog.fallenwood.net/search/">View all results</a>
+          </div>
+        </div>
+        <ul class="menu menu-horizontal menu-sm px-1 gap-0.5 font-medium">
+          <li><a class="gap-1.5 rounded-lg" href="https://blog.fallenwood.net/"><i data-lucide="house" class="w-4 h-4"></i>首页</a></li>
+          <li><a class="gap-1.5 rounded-lg" href="https://blog.fallenwood.net/categories/"><i data-lucide="archive" class="w-4 h-4"></i>归档</a></li>
+          <li><a class="gap-1.5 rounded-lg" href="https://blog.fallenwood.net/tags/"><i data-lucide="tags" class="w-4 h-4"></i>标签</a></li>
+          <li><a class="gap-1.5 rounded-lg" href="https://blog.fallenwood.net/atom.xml"><i data-lucide="rss" class="w-4 h-4"></i>RSS</a></li>
+          <li><a class="gap-1.5 rounded-lg" href="https://blog.fallenwood.net/about/"><i data-lucide="user" class="w-4 h-4"></i>关于</a></li>
+        </ul>
+        <label class="swap swap-rotate btn btn-ghost btn-circle btn-sm" aria-label="Toggle theme">
+          <input type="checkbox" id="theme-toggle-desktop">
+          <i data-lucide="sun" class="swap-off w-4 h-4 theme-icon-light"></i>
+          <i data-lucide="moon" class="swap-on w-4 h-4 theme-icon-dark"></i>
+        </label>
+      </div>
+      <div class="navbar-end lg:hidden">
+        <label class="swap swap-rotate btn btn-ghost btn-circle btn-sm mr-1" aria-label="Toggle theme">
+          <input type="checkbox" id="theme-toggle-mobile">
+          <i data-lucide="sun" class="swap-off w-4 h-4 theme-icon-light"></i>
+          <i data-lucide="moon" class="swap-on w-4 h-4 theme-icon-dark"></i>
+        </label>
+        <button id="mobile-menu-open" class="btn btn-ghost btn-circle btn-sm" aria-label="Open menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="mobile-menu" class="hidden lg:hidden w-full bg-base-100 border-b border-base-300/50">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+      <nav class="py-4">
+        <div class="form-control w-full mb-4" data-search-root-mobile>
+          <label class="input input-bordered flex items-center gap-2" for="search-input-mobile">
+            <i data-lucide="search" class="w-4 h-4 opacity-50"></i>
+            <input id="search-input-mobile" type="search" placeholder="Search…" class="grow bg-transparent" autocomplete="off" />
+          </label>
+          <div class="mt-2 hidden" id="search-results-panel-mobile">
+            <ul class="menu menu-sm bg-base-100 rounded-box border border-base-200 max-h-80 overflow-y-auto" id="search-results-list-mobile"></ul>
+          </div>
+          <a id="search-view-all-mobile" class="link link-primary mt-2 inline-flex items-center gap-1 text-sm" href="https://blog.fallenwood.net/search/">View all results</a>
+        </div>
+        <ul class="menu menu-md w-full gap-1">
+          <li><a class="gap-3 rounded-lg" href="https://blog.fallenwood.net/"><i data-lucide="house" class="w-5 h-5"></i>首页</a></li>
+          <li><a class="gap-3 rounded-lg" href="https://blog.fallenwood.net/categories/"><i data-lucide="archive" class="w-5 h-5"></i>归档</a></li>
+          <li><a class="gap-3 rounded-lg" href="https://blog.fallenwood.net/tags/"><i data-lucide="tags" class="w-5 h-5"></i>标签</a></li>
+          <li><a class="gap-3 rounded-lg" href="https://blog.fallenwood.net/atom.xml"><i data-lucide="rss" class="w-5 h-5"></i>RSS</a></li>
+          <li><a class="gap-3 rounded-lg" href="https://blog.fallenwood.net/about/"><i data-lucide="user" class="w-5 h-5"></i>关于</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="max-w-5xl mx-auto px-4 lg:px-6 py-10 flex-grow w-full">
+    
+<section class="w-full">
+  <div class="grid gap-5 grid-cols-1">
+    
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='/2026/01/18/site-generator/'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='/2026/01/18/site-generator/'">
+        <div class="card-body gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="card-title text-xl lg:text-2xl font-semibold leading-snug">
+              <a href="/2026/01/18/site-generator/" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">关于换了个Site Generator这件事</a>
+            </h2>
+          </div>
+          
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
+              <p>趁着周末 <del>和AI</del> 把拖了很久的换 <em>Static Site Generator (SSG)</em> 的事情办了, 倒不是对 <em>Hexo</em> 有什么意见, 只是不想在各种电脑上都装 nodejs/bun+一大堆 node_modules 了, 所以想搞个 <strong>native</strong> 一点的解决方案. <!---more--> 所以一直想用 c# 来搞一个版本.</p>
+<p>众所周知, <em>c#</em> 官方自带一个 <em>Razor</em> 的模板引擎, 可以说是非常强悍了, 但是拿来搞 <em>SSG</em> 多少有点水土不服, 第三方的 <em>Scriban</em> 体验又很差 ~~好像不支持 {% base %} ~~, 所以, 开摆.</p>
+<p>直到前两天看到了<a href="https://x.com/mitsuhiko/status/2010980637059002605?s=20"><em>minijinja</em> 移植到 <em>go</em> 的新闻</a>, 等会儿你们 <em>minijinja</em> 不是用 <em>parser combinator</em> 写的吗, 移植这么方便吗. 看了一眼 <em>minijinja-go</em> 的源码, 好像还确实挺简单的,于是 让 Copilot 直接照着 <em>go</em> 版本抄了一份 <a href="https://github.com/fallenwood/minijinja-csharp">c# 版本</a> 出来, 虽然用了反射不太好 trim, 但是能用就行.</p>
+<p>然后就开心的让 Copilot 继续写了份 <em>SSG</em> 出来, 也就是现在新换上的这个, 虽然功能缺的挺多, UI也多少有点丑, 但是能用就行.</p>
+<p><em>SSG</em> 目前还在继续 <del>让 Copilot</del> 开发, 等弄好之后会开源出来 <del>下一个有生之年</del>.</p>
+
+            </div>
+          
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/50 mt-auto pt-2">
+            <span class="inline-flex items-center gap-1.5">
+              <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
+              
+                2026-01-18 13:14
+              
+            </span>
+            
+          </div>
+          
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              
+                <a href="https://blog.fallenwood.net/tags/c#/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">c#</a>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='/2023/09/09/rpc-0/'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='/2023/09/09/rpc-0/'">
+        <div class="card-body gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="card-title text-xl lg:text-2xl font-semibold leading-snug">
+              <a href="/2023/09/09/rpc-0/" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">关于写一个简单RPC框架这件事 (0)</a>
+            </h2>
+          </div>
+          
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
+              <p>TODO: 中文版</p>
+
+            </div>
+          
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/50 mt-auto pt-2">
+            <span class="inline-flex items-center gap-1.5">
+              <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
+              
+                2023-09-09 13:34
+              
+            </span>
+            
+          </div>
+          
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              
+                <a href="https://blog.fallenwood.net/tags/RPC/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">RPC</a>
+              
+                <a href="https://blog.fallenwood.net/tags/C#/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">C#</a>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='/2023/04/07/c-io-uring/'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='/2023/04/07/c-io-uring/'">
+        <div class="card-body gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="card-title text-xl lg:text-2xl font-semibold leading-snug">
+              <a href="/2023/04/07/c-io-uring/" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">C#调用io_uring的一次尝试</a>
+            </h2>
+          </div>
+          
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
+              <p>&quot;异步&quot;这个词大概是15年前后日常出现在耳边的, 当时nodejs如日中天, 吹的就是一个异步与高并发. 虽然在之前已经有各种各样的异步lib了, 但感谢nodejs, 把<code>async</code>在中国带火</p>
+<p><img src="https://ever17.blob.core.windows.net/blog/async_china.jpg" alt="trends" /></p>
+
+            </div>
+          
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/50 mt-auto pt-2">
+            <span class="inline-flex items-center gap-1.5">
+              <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
+              
+                2023-04-07 12:32
+              
+            </span>
+            
+          </div>
+          
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              
+                <a href="https://blog.fallenwood.net/tags/c#/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">c#</a>
+              
+                <a href="https://blog.fallenwood.net/tags/io_uring/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">io_uring</a>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='/2022/09/02/signalr-httpcontext/'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='/2022/09/02/signalr-httpcontext/'">
+        <div class="card-body gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="card-title text-xl lg:text-2xl font-semibold leading-snug">
+              <a href="/2022/09/02/signalr-httpcontext/" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">SignalR中HttpContext复用的问题</a>
+            </h2>
+          </div>
+          
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
+              <h2 id="section">背景</h2>
+<p>使用 SignalR SSE ( <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">ServerSentEvents</a> ) 时候遇到一个奇怪的现象, 我们对接 SignalR Hub 的代码, 不管是向 Client 发送数据的 Get Request, 还是从 Client 接收数据的 Post Request, 拿到的 HttpContext 都是同一个, 导致从 Context 读取到的东西有问题.</p>
+
+            </div>
+          
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/50 mt-auto pt-2">
+            <span class="inline-flex items-center gap-1.5">
+              <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
+              
+                2022-09-02 22:03
+              
+            </span>
+            
+          </div>
+          
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              
+                <a href="https://blog.fallenwood.net/tags/signalr/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">signalr</a>
+              
+                <a href="https://blog.fallenwood.net/tags/c#/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">c#</a>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="post-card card card-sm bg-base-100 shadow-sm border border-base-300/50 hover:shadow-md hover:border-primary/30 cursor-pointer group"
+        onclick="window.location='/2022/07/23/jaeger-opentelemtry-logs/'"
+        role="link" tabindex="0"
+        onkeydown="if(event.key==='Enter')window.location='/2022/07/23/jaeger-opentelemtry-logs/'">
+        <div class="card-body gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="card-title text-xl lg:text-2xl font-semibold leading-snug">
+              <a href="/2022/07/23/jaeger-opentelemtry-logs/" class="group-hover:text-primary transition-colors" onclick="event.stopPropagation()">一个Jaeger Opentelemtry Logs没有生效的问题</a>
+            </h2>
+          </div>
+          
+            <div class="prose prose-sm text-base-content/70 line-clamp-3 max-w-none">
+              <p>TL;DR:
+<a href="https://github.com/jaegertracing/jaeger/blob/ddca3c84c3731025163d5b5bc4b1b648bc904fbf/cmd/collector/app/handler/otlp_receiver.go#L45-L52">Jaeger 中只实现了 Opentelemetry Protocol 中的 traces , 并没有实现 metrics / logs</a></p>
+<pre><code class="language-go">func StartOTLPReceiver(options *flags.CollectorOptions, logger *zap.Logger, spanProcessor processor.SpanProcessor, tm *tenancy.TenancyManager) (component.TracesReceiver, error) {
+	otlpFactory := otlpreceiver.NewFactory()
+	return startOTLPReceiver(
+		options,
+		logger,
+		spanProcessor,
+		tm,
+		otlpFactory,
+		consumer.NewTraces,
+		otlpFactory.CreateTracesReceiver,
+	)
+}
+</code></pre>
+
+            </div>
+          
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/50 mt-auto pt-2">
+            <span class="inline-flex items-center gap-1.5">
+              <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
+              
+                2022-07-23 20:10
+              
+            </span>
+            
+          </div>
+          
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              
+                <a href="https://blog.fallenwood.net/tags/jaeger/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">jaeger</a>
+              
+                <a href="https://blog.fallenwood.net/tags/opentelemetry/" class="badge badge-sm badge-soft badge-neutral hover:badge-primary transition-colors cursor-pointer" onclick="event.stopPropagation()">opentelemetry</a>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+  </div>
+
+  
+    <div class="flex justify-center mt-12">
+      <div class="join">
+        
+
+        
+          
+            <a class="join-item btn btn-sm border-base-300/50 btn-primary text-primary-content" href="/">1</a>
+          
+        
+          
+            <a class="join-item btn btn-sm border-base-300/50 bg-base-100 hover:bg-base-200" href="/page/2/">2</a>
+          
+        
+
+        
+          <a class="join-item btn btn-sm bg-base-100 border-base-300/50 hover:bg-base-200" href="/page/2/">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+</section>
+
+  </main>
+
+  <footer class="mt-auto">
+    <div class="footer-divider max-w-5xl mx-auto"></div>
+    <div class="footer footer-center py-8 px-4 text-base-content/60">
+      <div class="flex flex-col items-center gap-2">
+        <p class="text-sm">© 2015–2026 <span class="font-medium text-base-content">Does God Dice?</span></p>
+        <p class="text-xs">Powered by <a href="#" class="link link-hover font-medium text-primary/80">Toki</a></p>
+      </div>
+    </div>
+  </footer>
+  
+  
+  
+  
+
+  <script>
+    // Theme toggle using daisyUI swap component
+    (function() {
+      const STORAGE_KEY = 'toki-theme';
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(STORAGE_KEY, theme);
+        syncToggles(theme === 'dark');
+      }
+
+      function syncToggles(isDark) {
+        document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile').forEach(function(el) {
+          el.checked = isDark;
+        });
+      }
+
+      // Initialize theme immediately to prevent FOUC
+      var stored = localStorage.getItem(STORAGE_KEY);
+      var initial = stored || getSystemTheme();
+      document.documentElement.setAttribute('data-theme', initial);
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+
+      // Setup swap toggles after DOM ready
+      document.addEventListener('DOMContentLoaded', function() {
+        syncToggles(initial === 'dark');
+
+        document.querySelectorAll('#theme-toggle-desktop, #theme-toggle-mobile').forEach(function(el) {
+          el.addEventListener('change', function() {
+            setTheme(this.checked ? 'dark' : 'light');
+          });
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function() {
+      const menu = document.getElementById('mobile-menu');
+      const openBtn = document.getElementById('mobile-menu-open');
+      const toggleMenu = () => {
+        if (!menu) return;
+        menu.classList.toggle('hidden');
+      };
+
+      if (openBtn) openBtn.addEventListener('click', toggleMenu);
+    })();
+  </script>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+  
+</body>
+</html>
