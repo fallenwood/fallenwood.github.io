@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-3xl mx-auto">
+  <div class="card bg-base-100 shadow-sm border border-base-300/50">
+    <div class="card-body p-6 lg:p-10">
+      <h1 class="text-3xl lg:text-4xl font-bold mb-2 tracking-tight">{{ page.title }}</h1>
+      <div class="divider mt-2 mb-6"></div>
+      {% if page.content %}
+        <article class="prose prose-base lg:prose-lg max-w-none mb-8">
+          {{ page.content | safe }}
+        </article>
+      {% endif %}
+      {% if site.friends %}
+        <div class="flex flex-col gap-4">
+          {% for friend in site.friends %}
+            <a href="{{ friend.link }}" target="_blank" rel="noopener noreferrer"
+               class="card card-border bg-base-200/50 hover:bg-base-200 transition-colors">
+              <div class="card-body p-4 flex-row items-center gap-3">
+                {% if friend.avatar %}
+                  <div class="avatar">
+                    <div class="w-10 rounded-full">
+                      <img src="{{ friend.avatar }}" alt="{{ friend.name }}" />
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="avatar avatar-placeholder">
+                    <div class="bg-primary text-primary-content w-10 rounded-full">
+                      <span class="text-lg">{{ friend.name[:1] }}</span>
+                    </div>
+                  </div>
+                {% endif %}
+                <div class="flex-1 min-w-0">
+                  <h2 class="font-semibold text-base truncate">{{ friend.name }}</h2>
+                  <p class="text-xs text-base-content/50 truncate">{{ friend.link }}</p>
+                </div>
+                <i data-lucide="external-link" class="w-4 h-4 opacity-40 shrink-0"></i>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
