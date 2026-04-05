@@ -29,6 +29,7 @@ categoryPrefix = "分类"
 previous = "上一页"
 next = "下一页"
 pagePrefix = "第"
+friends = "友链"
 
 [date]
 format = "yyyy-MM-dd HH:mm"
@@ -85,3 +86,13 @@ enabled = true
 cdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"
 localeCdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/locale/zh-cn.js"
 relativeTimeCdn = "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/plugin/relativeTime.js"
+
+[[friends]]
+name = "Vac"
+link = "https://blog.vac.fun/"
+avatar = "https://avatars.githubusercontent.com/u/13472805?v=4"
+
+[[friends]]
+name = "Mewx"
+link = "https://www.mewx.org/"
+avatar = "https://avatars.githubusercontent.com/u/5752560?v=4"
